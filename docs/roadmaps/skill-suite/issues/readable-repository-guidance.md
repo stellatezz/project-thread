@@ -1,5 +1,8 @@
 # Detailed guidance for readable, agent-ready repositories
 
+Created: 2026-09-05
+Updated: 2026-09-05
+
 Status: resolved
 
 Owner: [skill-suite roadmap](../README.md). Plan: [readable repository knowledge](../plans/readable-agentic-codebase.md). Phase: [revamp and migrate](../phases/readable-agentic-codebase/01-revamp-and-migrate.md).

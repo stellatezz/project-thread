@@ -1,6 +1,6 @@
 {
   "name": "make-codebase-agentic",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Give coding agents the context, workflows, and checks to build maintainable software with readable repository knowledge.",
   "author": {
     "name": "Make Codebase Agentic contributors"

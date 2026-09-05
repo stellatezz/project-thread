@@ -29,6 +29,8 @@ Keep requirements in the plan or existing requirements authority. A phase can de
 
 ## State and completion
 
+An overview carries the [roadmap lifecycle](../../make-codebase-agentic-roadmap/references/lifecycle.md) and [record dates](record-dates.md). Keep area/initiative status distinct from the progress of its individual outcomes. The navigation index summarizes those statuses; it does not become a separate delivery roadmap.
+
 Reuse existing issue states. Without an established scheme, `open`, `in-progress`, `blocked`, and `resolved` are sufficient; record a reason for work cancelled or deferred. A blocker names the missing requirement, capability, or evidence and its owner when known. Opening an issue does not itself schedule or authorize its implementation.
 
 Resolve an issue when its stated outcome is established and linked verification supports the resolution. An explicit duplicate or no-longer-needed disposition records the reason and surviving owner. A phase remains open while an included acceptance criterion or required verification is unmet, even if a related issue has been resolved. Completing a shared dependency can unblock consuming phases but does not complete them.

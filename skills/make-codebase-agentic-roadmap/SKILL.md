@@ -15,6 +15,8 @@ Keep a lightweight index, normally `docs/roadmaps/README.md`, linking the roadma
 
 The area's overview is the entry point for its plans, issues, phase records, and relevant Agent Notes. Group delivery files in the area folder by default; keep decision notes canonical in the shared lifecycle tree. Read [delivery-record guidance](../make-codebase-agentic/references/delivery-records.md) to connect these records and preserve established layouts.
 
+Use [roadmap lifecycle](references/lifecycle.md) when creating an overview or changing its status: distinguish ongoing areas from bounded initiatives, delivery completion from retirement, and archival from lifecycle status. Apply [record dates](../make-codebase-agentic/references/record-dates.md) without guessing historical creation dates. Roadmaps and Agent Notes remain separately owned, linked records.
+
 ## Sequence requirements and plans
 
 For each outcome, record user value, scope, priority/order, milestone, dependencies, and the owning requirements and feature plan when available. Feature-specific requirements and acceptance criteria belong in the plan or an existing requirements owner; shared business rules stay in product documentation. Summarize and link those records. A candidate can name an unresolved requirement without inventing a ready implementation plan.

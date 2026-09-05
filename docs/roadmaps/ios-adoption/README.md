@@ -1,5 +1,10 @@
 # iOS-adoption roadmap
 
+Kind: initiative
+Status: draft
+Created: 2026-09-05
+Updated: 2026-09-05
+
 Scope: evaluating Make Codebase Agentic in a real native iOS client and using observed needs to improve the suite. [Project index](../../roadmap.md).
 
 | Outcome | Status | Dependencies | Requirement/plan owner |

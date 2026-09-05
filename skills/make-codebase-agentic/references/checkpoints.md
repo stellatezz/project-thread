@@ -14,3 +14,5 @@ Record:
 On recovery, compare the checkpoint with the working tree, current docs, and results. Resolve drift before continuing. Do not rerun an expensive check solely because a session changed if the artifact still covers the same code and environment. Do rerun when code, configuration, or the underlying claim changed.
 
 Keep checkpoints free of credentials, private user data, and disposable transcript detail. Retain older checkpoints only when they add useful history; never use them as current business authority.
+
+Use `Updated: YYYY-MM-DD` under [record dates](record-dates.md). Verification results retain their actual dates rather than inheriting the checkpoint's latest update date.

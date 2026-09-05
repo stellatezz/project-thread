@@ -2,6 +2,8 @@
 
 Reuse established repository semantics where present. Otherwise use `.agents/notes/<lifecycle>/<kind>/<date>-<topic>.md`, with a title and `Status: <lifecycle>`. Useful kinds include architecture, behavior, process, and simplification; create kinds only when needed.
 
+Follow [record dates](../../make-codebase-agentic/references/record-dates.md): a new note's filename uses its first-proposed or first-recorded date in `YYYY-MM-DD` form. Keep it stable through lifecycle changes. Archiving adds an explicit `Archived: YYYY-MM-DD` field and reason without changing the filename date. Roadmap completion and archival do not change this note's lifecycle automatically.
+
 | Lifecycle | Required substance |
 | --- | --- |
 | `proposed` | Problem, proposal, genuine alternatives, observable acceptance criteria, risks and unresolved decisions |

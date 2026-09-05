@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from check import SKILLS, validate_bundle
+from check import SKILLS, validate_bundle, validate_record
 from install import install
 from package import package
 from zipfile import ZipFile
@@ -176,6 +176,75 @@ class InstallationTests(unittest.TestCase):
             install(ROOT, self.base, remove=True, legacy_bundle=old)
 
 
+class RecordTests(unittest.TestCase):
+    roadmap = Path('docs/roadmaps/example/README.md')
+    header = '# Example\n\nKind: initiative\nStatus: active\nCreated: 2026-09-01\nUpdated: 2026-09-05\n'
+
+    def errors(self, text, path=None):
+        return validate_record(path or self.roadmap, text)[0]
+
+    def test_valid_dates_unknown_provenance_and_calendar_failures(self):
+        self.assertEqual(self.errors(self.header), [])
+        for value in ('2026-02-30', '20260901', 'yesterday', ''):
+            with self.subTest(value=value):
+                self.assertTrue(self.errors(self.header.replace('2026-09-01', value)))
+        unknown = self.header.replace('Created: 2026-09-01', 'Created: unknown')
+        self.assertTrue(self.errors(unknown))
+        self.assertEqual(self.errors(unknown + 'Date provenance: Imported without history.\n'), [])
+        self.assertTrue(self.errors(self.header.replace('Updated: 2026-09-05', 'Updated: 2026-08-31')))
+
+    def test_metadata_must_be_in_header_and_unambiguous(self):
+        missing = self.header.replace('Created: 2026-09-01\n', '')
+        self.assertTrue(self.errors(missing + '\n## Example\nCreated: 2026-09-01\n'))
+        self.assertTrue(self.errors(missing + '\n```text\nCreated: 2026-09-01\n```\n'))
+        self.assertTrue(self.errors(self.header + 'Updated: 2026-09-06\n'))
+
+    def test_roadmap_states_require_reasons_or_completion_evidence(self):
+        for status, extra in {
+            'draft': '', 'active': '',
+            'paused': 'Pause reason: Waiting for contract.\nResume when: Contract approved.\n',
+            'completed': 'Completion evidence: Verified phase record.\n',
+            'retired': 'Retirement reason: Product direction cancelled.\n',
+        }.items():
+            with self.subTest(status=status):
+                text = self.header.replace('Status: active', 'Status: ' + status)
+                self.assertEqual(self.errors(text + extra), [])
+                if extra:
+                    self.assertTrue(self.errors(text))
+        self.assertTrue(self.errors(self.header.replace('Status: active', 'Status: archived')))
+        self.assertTrue(self.errors(self.header.replace('Kind: initiative', 'Kind: project')))
+        self.assertEqual(self.errors(self.header.replace('Kind: initiative', 'Kind: area')), [])
+
+    def test_archive_keeps_terminal_status_and_valid_sealing_date(self):
+        archive = self.header + 'Archived: 2026-09-06\nArchive reason: Replaced by current owner.\n'
+        self.assertTrue(self.errors(archive))
+        archive = archive.replace('Status: active', 'Status: retired') + 'Retirement reason: Cancelled.\n'
+        self.assertEqual(validate_record(self.roadmap, archive), ([], True))
+        self.assertTrue(self.errors(archive.replace('2026-09-06', '2026-09-04')))
+        self.assertTrue(self.errors(archive.replace('Archive reason: Replaced by current owner.\n', '')))
+        archived_path = Path('docs/roadmaps/archived/example/README.md')
+        self.assertTrue(self.errors(archive.replace('Archived: 2026-09-06\n', ''), archived_path))
+
+    def test_note_filename_date_and_archive_metadata(self):
+        note = Path('.agents/notes/implemented/process/2026-09-01-choice.md')
+        self.assertEqual(self.errors('# Choice\nStatus: implemented\n', note), [])
+        self.assertTrue(self.errors('# Choice\nStatus: implemented\n', note.with_name('2026-02-30-choice.md')))
+        self.assertTrue(self.errors('# Choice\nStatus: implemented\nArchived: 2026-09-05\n', note))
+        archived = Path('.agents/notes/archived/process/2026-09-01-choice.md')
+        self.assertEqual(validate_record(archived, '# Choice\nStatus: archived\nArchived: 2026-09-05\n'), ([], True))
+        self.assertTrue(self.errors('# Choice\nStatus: archived\nArchived: 2026-08-31\n', archived))
+
+    def test_dates_apply_to_delivery_index_and_checkpoint_not_evaluations(self):
+        for path in ('docs/roadmap.md', 'docs/roadmaps/README.md', 'docs/plans/a.md',
+                     'docs/roadmaps/a/plans/b.md', 'docs/roadmaps/a/phases/b/01.md',
+                     'docs/roadmaps/a/issues/c.md'):
+            with self.subTest(path=path):
+                self.assertTrue(self.errors('# Record\n', Path(path)))
+                self.assertEqual(self.errors('# Record\nCreated: 2026-09-01\nUpdated: 2026-09-05\n', Path(path)), [])
+        self.assertEqual(self.errors('# Checkpoint\nUpdated: 2026-09-05\n', Path('docs/checkpoints/current.md')), [])
+        self.assertEqual(validate_record(Path('evals/results/old/docs/roadmaps/a/README.md'), '# Old result\n'), ([], False))
+
+
 class ValidationTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -186,6 +255,16 @@ class ValidationTests(unittest.TestCase):
         self.temp.cleanup()
 
     def test_bundle_passes(self):
+        self.assertEqual(validate_bundle(self.bundle), [])
+
+    def test_record_validation_runs_and_frozen_links_are_not_rewritten(self):
+        record = self.bundle / 'docs/roadmaps/example/README.md'
+        record.parent.mkdir(parents=True)
+        record.write_text(RecordTests.header.replace('Updated: 2026-09-05', 'Updated: invalid'))
+        self.assertTrue(any('Updated' in error for error in validate_bundle(self.bundle)))
+        record.write_text(RecordTests.header.replace('Status: active', 'Status: retired') +
+                          'Retirement reason: Cancelled.\nArchived: 2026-09-06\nArchive reason: Historical.\n\n' +
+                          '[Historical owner](missing.md)\n')
         self.assertEqual(validate_bundle(self.bundle), [])
 
     def test_missing_required_skill_fails(self):

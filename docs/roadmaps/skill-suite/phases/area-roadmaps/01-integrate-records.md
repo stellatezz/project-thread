@@ -1,5 +1,8 @@
 # Integrate roadmap delivery records
 
+Created: 2026-09-05
+Updated: 2026-09-05
+
 Status: complete
 
 Parent plan: [Area and initiative roadmaps](../../plans/area-roadmaps.md). Owning roadmap: [Skill suite](../../README.md). Included issue: [Roadmap record ownership](../../issues/roadmap-record-ownership.md).

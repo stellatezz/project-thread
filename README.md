@@ -61,6 +61,10 @@ docs/roadmaps/media-editor/
 
 Each plan and issue has one primary roadmap owner. Phases group work into verifiable delivery steps, and issues track concrete problems or work items. Agent Notes preserve decisions and link to the affected records from one canonical lifecycle tree. Other areas reference shared capabilities as dependencies. Detailed requirements and acceptance criteria have one owner in the plan or an existing requirements document; shared business rules stay in product documentation. Roadmap progress follows verified plan/phase evidence. See [delivery-record guidance](skills/make-codebase-agentic/references/delivery-records.md) for links and completion rules.
 
+Roadmaps have an independent [lifecycle](skills/make-codebase-agentic-roadmap/references/lifecycle.md): draft, active, paused, completed, or retired. An ongoing area can remain active after its current milestones finish; a bounded initiative completes against its defined acceptance criteria. Archive completed or retired roadmaps later while retaining their delivery status and links. Linked Agent Notes keep their own lifecycle.
+
+[Record dates](skills/make-codebase-agentic/references/record-dates.md) define `Created` and `Updated` for roadmaps, indexes, plans, separate phases, and Markdown issues. Agent Notes keep their original date in the filename; archival adds an explicit sealing date. Unknown legacy creation dates remain explicit rather than being guessed.
+
 ## Install in Codex
 
 Requires Python 3.9+ and a filesystem with symlink support. Keep this checkout at a stable path. Install the complete bundle so companion references resolve.

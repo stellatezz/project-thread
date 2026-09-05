@@ -1,5 +1,8 @@
 # Readable repository knowledge and rename
 
+Created: 2026-09-05
+Updated: 2026-09-05
+
 Status: complete
 
 Owner: [skill-suite roadmap](../README.md). Issue: [readable repository guidance](../issues/readable-repository-guidance.md). Phase: [revamp and migrate](../phases/readable-agentic-codebase/01-revamp-and-migrate.md).

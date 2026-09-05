@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from datetime import date
 import json
 from pathlib import Path
 import re
@@ -27,6 +28,96 @@ def scalar(text: str, key: str) -> str | None:
 def without_code(text: str) -> str:
     text = re.sub(r"^```[^\n]*\n.*?^```\s*$", "", text, flags=re.MULTILINE | re.DOTALL)
     return re.sub(r"`[^`\n]+`", "", text)
+
+
+def record_category(path: Path) -> str | None:
+    """Recognize this bundle's record owners; retained evals are out of scope."""
+    parts = path.parts
+    if parts[:2] == (".agents", "notes") and len(parts) >= 5:
+        return "note"
+    if path.as_posix() in {"docs/roadmap.md", "docs/roadmaps/README.md"}:
+        return "index"
+    if parts[:2] == ("docs", "checkpoints"):
+        return "checkpoint"
+    if parts[:2] == ("docs", "plans"):
+        return "delivery"
+    if parts[:2] == ("docs", "roadmaps"):
+        local = parts[2:]
+        if local and local[0] == "archived":
+            local = local[1:]
+        if len(local) == 2 and local[1] == "README.md":
+            return "roadmap"
+        if len(local) >= 3 and local[1] in {"plans", "phases", "issues"}:
+            return "delivery"
+    return None
+
+
+def validate_record(path: Path, text: str) -> tuple[list[str], bool]:
+    category = record_category(path)
+    if category is None:
+        return [], False
+    errors = []
+    header = re.split(r"^##\s", without_code(text), maxsplit=1, flags=re.MULTILINE)[0]
+
+    def field(key: str) -> str | None:
+        values = re.findall(rf"^{re.escape(key)}:[ \t]*(.*)$", header, re.MULTILINE)
+        if len(values) > 1:
+            errors.append(f"{path}: duplicate {key} metadata")
+        return values[0].strip() if values else None
+
+    def calendar(value: str | None, key: str) -> date | None:
+        try:
+            if value is None or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
+                raise ValueError
+            return date.fromisoformat(value)
+        except ValueError:
+            errors.append(f"{path}: {key} must be a valid YYYY-MM-DD date")
+            return None
+
+    created = updated = None
+    archived_value = field("Archived")
+    archived = (category == "note" and path.parts[2] == "archived") or (
+        category == "roadmap" and (path.parts[2] == "archived" or archived_value is not None))
+    if category == "note":
+        match = re.fullmatch(r"(\d{4}-\d{2}-\d{2})-.+\.md", path.name)
+        created = calendar(match[1] if match else None, "filename date")
+        if path.parts[2] not in {"proposed", "implemented", "rejected", "archived"} or field("Status") != path.parts[2]:
+            errors.append(f"{path}: lifecycle and Status disagree")
+        if archived_value is not None and not archived:
+            errors.append(f"{path}: Archived metadata requires the archived note lifecycle")
+    else:
+        updated = calendar(field("Updated"), "Updated")
+        if category != "checkpoint":
+            value = field("Created")
+            if value == "unknown":
+                if not field("Date provenance"):
+                    errors.append(f"{path}: unknown Created requires Date provenance")
+            else:
+                created = calendar(value, "Created")
+            if created and updated and updated < created:
+                errors.append(f"{path}: Updated precedes Created")
+    if category == "roadmap":
+        status = field("Status")
+        if field("Kind") not in {"area", "initiative"}:
+            errors.append(f"{path}: roadmap Kind must be area or initiative")
+        if status not in {"draft", "active", "paused", "completed", "retired"}:
+            errors.append(f"{path}: invalid roadmap Status")
+        required = {"paused": ("Pause reason", "Resume when"),
+                    "completed": ("Completion evidence",), "retired": ("Retirement reason",)}
+        for key in required.get(status, ()):
+            if not field(key):
+                errors.append(f"{path}: {status} roadmap requires {key}")
+        if archived:
+            if status not in {"completed", "retired"}:
+                errors.append(f"{path}: only completed or retired roadmaps may be archived")
+            if not field("Archive reason"):
+                errors.append(f"{path}: archived roadmap requires Archive reason")
+    if archived:
+        sealed = calendar(archived_value, "Archived")
+        previous = updated or created
+        if sealed and previous and sealed < previous:
+            errors.append(f"{path}: Archived precedes the last known record date")
+    return errors, archived
 
 
 def validate_bundle(root: Path) -> list[str]:
@@ -66,6 +157,11 @@ def validate_bundle(root: Path) -> list[str]:
         if any(part in {".git", ".build", "__pycache__", "dist"} for part in relative.parts):
             continue
         text = path.read_text()
+        record_errors, archived = validate_record(relative, text)
+        errors.extend(record_errors)
+        if archived:
+            # Frozen sources may retain historical outbound links and wording.
+            continue
         if "[TODO:" in text:
             errors.append(f"{relative}: unfinished scaffold placeholder")
         # Check inline Markdown file links used by this bundle; skip external URLs and anchors.
@@ -76,10 +172,6 @@ def validate_bundle(root: Path) -> list[str]:
             target = (path.parent / unquote(parsed.path)).resolve()
             if not target.is_relative_to(root) or not target.exists():
                 errors.append(f"{relative}: broken or non-portable link: {href}")
-        if relative.parts[:2] == (".agents", "notes") and len(relative.parts) >= 5:
-            lifecycle = relative.parts[2]
-            if lifecycle not in {"proposed", "implemented", "rejected", "archived"} or scalar(text, "Status") != lifecycle:
-                errors.append(f"{relative}: lifecycle and Status disagree")
     return errors
 
 
@@ -91,7 +183,7 @@ def main() -> int:
     for error in errors:
         print(error)
     if not errors:
-        print("make-codebase-agentic: 11 skills, metadata, file links, and note statuses passed")
+        print("make-codebase-agentic: 11 skills, metadata, file links, record dates, and lifecycle fields passed")
     return bool(errors)
 
 

@@ -10,9 +10,9 @@ Make Codebase Agentic is a standalone skill bundle for readable repository knowl
 | Shared priorities and cross-area dependencies | [Roadmap index](roadmap.md) |
 | Bundle outcomes and delivery records | [Skill-suite roadmap](roadmaps/skill-suite/README.md) |
 | Candidate application evaluation | [iOS-adoption roadmap](roadmaps/ios-adoption/README.md) |
-| Current implementation plan | [Readable knowledge and rename](roadmaps/skill-suite/plans/readable-agentic-codebase.md) |
-| Current phase and evidence | [Revamp and migrate](roadmaps/skill-suite/phases/readable-agentic-codebase/01-revamp-and-migrate.md) |
-| Current work item | [Readable repository guidance](roadmaps/skill-suite/issues/readable-repository-guidance.md) |
+| Current implementation plan and inline phase | [Roadmap lifecycle and dates](roadmaps/skill-suite/plans/roadmap-lifecycle.md) |
+| Previous completed phase | [Revamp and migrate](roadmaps/skill-suite/phases/readable-agentic-codebase/01-revamp-and-migrate.md) |
+| Previous resolved work item | [Readable repository guidance](roadmaps/skill-suite/issues/readable-repository-guidance.md) |
 | Upgrade instructions | [Project Thread migration](migration.md) |
 | Completed foundation | [Engineering and iOS v1](plans/engineering-ios-v1.md) |
 | Current continuation state | [Checkpoint](checkpoints/current.md) |

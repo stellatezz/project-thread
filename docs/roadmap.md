@@ -1,11 +1,14 @@
 # Roadmap index
 
+Created: 2026-09-05
+Updated: 2026-09-05
+
 This file connects scoped roadmaps. Detailed outcomes, milestones, and evidence live in their owning roadmap and feature plans.
 
-| Roadmap | Scope | Shared priority |
-| --- | --- | --- |
-| [Skill suite](roadmaps/skill-suite/README.md) | Workflow, engineering/iOS guidance, and distribution | Keep the complete bundle usable and verified |
-| [iOS adoption](roadmaps/ios-adoption/README.md) | Learn from a real adopting iOS project | Select a concrete slice and collect actual app/device evidence when that work is authorized |
+| Roadmap | Lifecycle | Scope | Shared priority |
+| --- | --- | --- | --- |
+| [Skill suite](roadmaps/skill-suite/README.md) | Active area | Workflow, engineering/iOS guidance, and distribution | Keep the complete bundle usable and verified |
+| [iOS adoption](roadmaps/ios-adoption/README.md) | Draft initiative | Learn from a real adopting iOS project | Select a concrete slice and collect actual app/device evidence when that work is authorized |
 
 ## Cross-area dependencies
 

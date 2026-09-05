@@ -23,3 +23,7 @@ For prose, review the result against the actual source: parent-directory require
 For adoption, inspect preservation of unique root, subtree, and Claude instructions; current product ownership; a practical context/checkpoint path; and executed CLI verification. A fresh Codex task can establish its explicit reading path, but it cannot establish automatic Claude discovery when that runtime is unavailable. Do not reward extra files or matching headings.
 
 Retain actual outputs, semantic findings, commands, and limitations under a dated result record. Compare the artifacts themselves before marking the exercise complete.
+
+## Roadmap maintenance exercise
+
+Give a fresh evaluator [the five-case lifecycle task](fixtures/roadmap-lifecycle/TASK.md) and the roadmap skill. Ask for concrete metadata and navigation proposals without supplying expected statuses. Review its treatment of ongoing area ownership, cancellation, resumption authorization, frozen archives, unknown creation dates, and independent Agent Notes. A scenario response provides decision evidence; metadata tests and application acceptance are separate checks. The [recorded run](results/2026-09-05-roadmap-lifecycle.md) retains actual inputs, output, and limits.

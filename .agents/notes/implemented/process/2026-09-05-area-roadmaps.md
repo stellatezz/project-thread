@@ -2,6 +2,8 @@
 
 Status: implemented
 
+The [roadmap lifecycle and dates decision](2026-09-05-roadmap-lifecycle-and-dates.md) adds independent overview states and date metadata without changing this record ownership model.
+
 The [readable repository guidance decision](2026-09-05-readable-agentic-codebase.md) refines the bundle's identity and writing guidance while retaining this roadmap and delivery ownership model.
 
 ## Problem

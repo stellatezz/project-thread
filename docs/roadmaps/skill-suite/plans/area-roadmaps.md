@@ -1,5 +1,8 @@
 # Area and initiative roadmaps
 
+Created: 2026-09-05
+Updated: 2026-09-05
+
 Status: complete
 
 Owning roadmap: [Skill suite](../README.md).

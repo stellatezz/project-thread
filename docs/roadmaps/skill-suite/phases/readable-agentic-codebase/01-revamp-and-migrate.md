@@ -1,5 +1,8 @@
 # Revamp guidance and migrate the bundle
 
+Created: 2026-09-05
+Updated: 2026-09-05
+
 Status: complete
 
 Plan: [readable repository knowledge](../../plans/readable-agentic-codebase.md). Issue: [guidance and identity](../../issues/readable-repository-guidance.md).

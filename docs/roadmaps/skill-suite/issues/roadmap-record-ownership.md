@@ -1,5 +1,8 @@
 # Roadmap record ownership
 
+Created: 2026-09-05
+Updated: 2026-09-05
+
 Status: resolved
 
 Owning roadmap: [Skill suite](../README.md). Implementing plan: [Area and initiative roadmaps](../plans/area-roadmaps.md). Delivery phase: [Integrate roadmap records](../phases/area-roadmaps/01-integrate-records.md).
