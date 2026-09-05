@@ -1,0 +1,16 @@
+COMMAND: swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -module-cache-path /private/tmp/project-thread-feed-eval/artifacts/module-cache -parse-as-library /private/tmp/project-thread-feed-eval/FeedStore.swift /private/tmp/project-thread-feed-eval/Tests/FeedStoreRegression.swift -o /private/tmp/project-thread-feed-eval/artifacts/fixed/feed-regression
+/private/tmp/project-thread-feed-eval/Tests/FeedStoreRegression.swift:59:9: error: main actor-isolated property 'description' cannot be used to satisfy nonisolated requirement from protocol 'CustomStringConvertible'
+ 44 | 
+ 45 | @MainActor
+ 46 | struct Snapshot: Equatable, CustomStringConvertible {
+    |                             `- note: add '@preconcurrency' to the 'CustomStringConvertible' conformance to defer isolation checking to run time
+ 47 |     let ids: [String]
+ 48 |     let cursor: String?
+    :
+ 57 |     }
+ 58 | 
+ 59 |     var description: String {
+    |         `- error: main actor-isolated property 'description' cannot be used to satisfy nonisolated requirement from protocol 'CustomStringConvertible'
+ 60 |         "items=\(ids), cursor=\(cursor ?? "nil"), loading=\(loading), error=\(error ?? "nil")"
+ 61 |     }
+EXIT: 1

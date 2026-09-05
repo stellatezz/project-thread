@@ -1,0 +1,199 @@
+# Project Thread scenario exercise
+
+This is a forward decision exercise using the ten request/context pairs in `evals/scenarios.json`. No application source, working tree, plan, checkpoint, test result bundle, simulator, device, backend contract, or archive was supplied for these fictional apps. All implementation and verification below is proposed next work. Results mentioned in a scenario are supplied assertions, not independently inspected evidence. I did not read `evals/rubric.md` or existing evaluation results, change the skill bundle, or execute application work.
+
+## Guidance actually loaded
+
+Paths below are relative to `/Users/ivanchow/Documents/projects/examples/project-thread/`.
+
+| Alias | Loaded file |
+| --- | --- |
+| Entry | `skills/project-thread/SKILL.md` |
+| Plan | `skills/project-thread-plan/SKILL.md` |
+| Phase | `skills/project-thread-phase/SKILL.md` |
+| Engineering | `skills/project-thread-engineering/SKILL.md` |
+| iOS | `skills/project-thread-ios/SKILL.md` |
+| Review | `skills/project-thread-review/SKILL.md` |
+| Setup | `skills/project-thread-setup/SKILL.md` |
+| Documentation | `skills/project-thread-documentation/SKILL.md` |
+| Notes | `skills/project-thread-agent-notes/SKILL.md` |
+| Records | `skills/project-thread/references/records.md` |
+| Checkpoints | `skills/project-thread/references/checkpoints.md` |
+| Failure | `skills/project-thread-engineering/references/boundaries-and-failure.md` |
+| Verification | `skills/project-thread-engineering/references/verification.md` |
+| Architecture | `skills/project-thread-ios/references/architecture-and-concurrency.md` |
+| Data | `skills/project-thread-ios/references/data-and-lifecycle.md` |
+| Interaction | `skills/project-thread-ios/references/interaction-quality.md` |
+| Tools | `skills/project-thread-ios/references/toolchain-and-verification.md` |
+| Feed/upload | `skills/project-thread-ios/references/feeds-and-uploads.md` |
+| Location | `skills/project-thread-ios/references/location-and-realtime.md` |
+| Media | `skills/project-thread-ios/references/media-editing.md` |
+| Note lifecycle | `skills/project-thread-agent-notes/references/lifecycle.md` |
+| Cookbooks | `skills/project-thread-documentation/references/cookbooks.md` |
+
+These were read because the combined scenario set needs them; per-scenario relevance is identified below. I did not load roadmap or simplify skills because no scenario requires redesigning roadmap order or a broad simplification investigation. I checked for applicable ancestor `AGENTS.md` files and for `AGENTS.md` under the bundle; none was found. A search of the optional workspace `.agents` path reported that it did not exist.
+
+Common recovery and record rules for all scenarios: read the adopting app's actual instructions, context map, checkpoint, owning plan/note, and relevant code; inspect status/diff and preserve unrelated changes. Those application records were not available here. Use existing record paths rather than imposing the defaults mentioned below. Search for an owning Agent Note before adding one. Proposed decisions stay proposed until implementation is established; an implemented note can name verification gaps, while a phase with a missing required check remains incomplete. Do not manufacture a cookbook from an unexecuted procedure. If a provisional procedure is useful, label it provisional.
+
+## existing-app
+
+**Decision and next work.** Continue the approved local saved-items phase without seeking the same approval again. Trace one existing UIKit feature from coordinator entry through injected repository to XCTest/UI coverage. Preserve iOS 16, the coordinator, injection conventions, and test targets. Do not introduce a navigation replacement, new app-wide state framework, account flow, or server sync to enable this slice.
+
+Reuse the saved-item/item identity and persistence owner. Implement the existing route's save/remove actions and a saved-items list using stable IDs that survive process restart. Treat local persistence as the source of truth for this phase. Serialize conflicting toggles through the established owner so a late save cannot undo a later removal. Show empty, loading, persistence-failure, and retry states with accessible controls. Inspect the approved plan for whether locally saving an ID guarantees offline content; storing IDs alone cannot establish that guarantee. A missing or deleted referenced item needs the product's existing unavailable-item behavior rather than an invented server contract.
+
+**Verification and limits.** Add focused tests using the existing XCTest conventions for idempotent add, remove, duplicate actions, error propagation, and reopening the same durable store with a fresh repository instance. A pure in-memory repository test does not establish persistence. Exercise the actual coordinator route: save an item, open saved items, terminate/relaunch, reopen, remove it, and confirm removal after another relaunch. Include the empty/error recovery state and relevant accessibility sizes. Discover the real scheme and simulator destination before running the app/UI target. No simulator result was supplied, so the interactive/relaunch acceptance remains unverified here. Do not claim cross-device sync or offline media availability.
+
+**Records that would change.** Update the saved-items plan's local acceptance/evidence, the owning behavior/architecture note, and checkpoint. Once implemented, update the existing product and architecture references with local scope, persistent ID ownership, and failure behavior. Keep sync explicitly deferred in the existing roadmap; do not turn it into a dependency of the approved local phase. Record discovered commands in the testing reference only after discovery. Phase closure requires the plan's actual journey evidence.
+
+**Loaded guidance used.** Entry, Phase, Plan, Engineering, iOS, Architecture, Data, Interaction, Tools, Failure, Verification, Records, Checkpoints, Documentation, Notes, Note lifecycle.
+
+## new-app
+
+**Decision and next work.** Establish one journey: launch, create a text entry, save it, close the app, relaunch, and reopen exactly that entry. Default to Swift and SwiftUI as directed by the iOS skill. Start with one app target and a small entry feature; no account/backend/sync/Android/media infrastructure, package-per-feature structure, or speculative dependency-injection framework.
+
+Inspect available Xcode/SDK tooling before scaffolding. Record the supported iOS floor and concurrency settings explicitly. The task does not supply a deployment floor; do not silently select an API that forces a consequential coverage decision. A deployment floor that changes intended user support is a product decision to resolve; independent model and persistence design can proceed. Avoid requesting approval for routine struct/file organization.
+
+Use a small entry value model with stable ID, text, and required timestamps. For the stated workload, propose a Foundation-backed, versioned local document store with an atomic per-entry commit; introduce a database only when demonstrated query/data needs justify it. Keep storage behind a narrow injectable boundary and keep UI state under one owner. Give the app durable ownership of its documents, define a save-success point after durable commit, preserve the prior valid file on failed writes, and report save failure while retaining the draft. Preserve recoverable draft work at defined checkpoints if draft recovery is part of the plan; do not claim unsaved recovery merely because explicit save works. The initial design system can be the app's consistent native text styles, spacing, semantic colors, and accessible controls.
+
+**Verification and limits.** Test document serialization/version handling, fresh-store reopen, replacement failure, and malformed/unreadable data without destructive reset. Build the actual app and run the complete create/save/terminate/relaunch/reopen route on a discovered simulator, including empty text rules from the plan, save-error recovery, keyboard reachability, and large text. A command-line store test alone is not a verified vertical slice. With no app or tooling output supplied, no architecture or behavior is implemented and no journey has passed.
+
+**Records that would change.** Within the requested project-start scope, use Setup to preflight missing/preserved/blocked paths and create only the necessary context map, concise product/architecture/testing records, initial plan, owning note, and checkpoint. Reuse any existing equivalents discovered. A small roadmap records the first journey and explicit deferrals without filling speculative phases. Keep selected proposals distinct from current behavior until built. The checkpoint names the next executable build/journey action and discovered prerequisites; no fabricated scheme, command result, or device ID.
+
+**Loaded guidance used.** Entry, Setup, Plan, Phase, Engineering, iOS, Architecture, Data, Interaction, Tools, Failure, Verification, Records, Checkpoints, Documentation, Notes, Note lifecycle.
+
+## feed
+
+**Decision and next work.** Reproduce the old-page/refresh race through FeedStore's public actions before changing its structure. Preserve the store architecture. Own query/account identity, refresh generation, snapshot cursor, items, and individual operation state together. Refresh invalidates the old generation and its next-page cursor even if cancellation does not stop delivery. Capture operation identity before awaiting; accept success, error, and final cleanup only if that operation still belongs to the current generation/query. A stale completion must not append items, replace the current cursor, set an error, or clear the loading state of a newer request.
+
+Use only cursors from the matching server query snapshot and deduplicate by stable content identity under the API's ordering contract. Keep initial-load, refresh, and pagination errors distinct; retry a page with its valid cursor, stop on defined exhaustion, and guard repeated/empty-page behavior using the actual contract. If the existing UX retains old rows during refresh, retain them only as stale display data and never issue new pagination against their invalidated cursor. Resolve unspecified ordering behavior from existing requirements rather than arrival order.
+
+Replace the unbounded full-resolution image dictionary with a cache owner that enforces decoded-cost and count limits, plus appropriate disk eviction. Downsample from the source to display needs before retaining decoded images; bound in-flight download/decode work and cancel or deprioritize offscreen requests. Check retained cell/task closures and player ownership so eviction actually releases media. Cell reuse must reject an image delivered for the previous identity. Choose the actual memory budget from a named device/workload and existing requirements, not an arbitrary universal number.
+
+**Verification and limits.** Controlled tests: start old page A, start refresh B, complete B then A with both success/error; reverse completion order; refresh twice; switch query/account; cancel during suspension. Assert visible IDs/order, snapshot cursor, loading/error state, and no effect from obsolete cleanup. Demonstrate that the regression test fails against the former mixing behavior when feasible. Verify cache eviction releases decoded owners and concurrency remains bounded, not just that dictionary entries disappear. Run the app's pull-to-refresh and long-scroll journey with representative 12-megapixel media, cold/warm caches, repeated navigation, and network failure. Retain baseline/after memory and scrolling traces with device, OS, configuration, and data volume; measure steady and peak resource use. No source fix, runtime journey, cache measurement, or budget result exists in this exercise.
+
+**Records that would change.** Update the feed fix plan or existing phase, the owning note explaining generation validation and cache ownership, affected architecture/testing references, and checkpoint. Record cursor/API uncertainty as a dependency. A proven local feed-section/media-loading procedure could become a cookbook only after execution. Keep the scrolling-resource criterion open until representative measurements exist.
+
+**Loaded guidance used.** Entry, Plan, Phase, Engineering, iOS, Architecture, Data, Feed/upload, Tools, Failure, Verification, Records, Checkpoints, Documentation, Notes, Note lifecycle, Cookbooks.
+
+## upload
+
+**Decision and next work.** There are two separate needs: preserve recoverable local work, and establish safe remote retry. Begin the independent local durability work now. Do not treat a percentage or temporary source URL as a resumable upload. Move/copy the selected source into app-owned durable storage at a defined commit point, retain it until the agreed success/cancellation cleanup point, and persist a versioned job record before sending a remote mutation. The job needs stable client operation identity, account scope, durable asset/prepared-file reference, known server identity if any, meaningful stage, and recoverable error/uncertainty state. Save state incrementally; do not depend on a termination callback.
+
+Separate selection/preparation, transfer, server acceptance/processing, and publication. Recovery must reconcile files and job records after partial writes and identify missing assets without deleting remaining work. Match callbacks and cleanup to the job/attempt so an obsolete completion cannot mark a newer attempt successful or remove its file. Define logout behavior from existing retention/privacy rules, preserving account isolation.
+
+The supplied context does not document server idempotency or lookup by client ID. Read the real API contract before implementing automatic retry after timeout/force quit. A persisted UUID alone cannot prevent duplicate server creation. If acceptance is uncertain, persist and show that uncertainty, retain the source, and do not blindly retry the mutation. Establish a supported idempotency/reconciliation contract as a named dependency; if absent, safe automatic retry remains blocked. A user-facing restart cannot be called duplicate-safe without that contract either. A scoped local recovery phase may progress while integrated retry acceptance stays open.
+
+Evaluate the actual background-transfer API, file requirements, SDK, and server resumability before choosing transfer integration. Force quit recovery must not be marketed as continuous background execution or byte-level resume. Preserving a restartable source is useful even when resuming transferred bytes is unsupported, but remote ambiguity must still be resolved before resubmission.
+
+**Verification and limits.** Inject interruption during source copy, job commit, preparation, transfer, remote acceptance before response, and completion delivery. Test relaunch with a fresh job owner, duplicate/late completion, cancellation, missing file, low disk, expiry, and account switch. Assert durable recoverable work, truthful state, no premature deletion, and correct account ownership. A mock can prove client handling of an uncertain response; only the documented integration can establish duplicate prevention/reconciliation. Test background/termination behavior on a named physical device separately. No contract or execution artifact exists here; the full preserve-and-safe-retry request cannot be marked complete.
+
+**Records that would change.** Revise the upload plan into explicit local-durability work and contract-dependent integration criteria. Update the owning note with the ambiguity decision and rejected blind-retry alternative, checkpoint with the missing capability and next API-contract lookup/integration action, and actual technical/product limitations once verified. Link the dependency in existing work tracking/roadmap without adding backend implementation to the iOS task. An upload cookbook must remain absent or clearly provisional until exercised.
+
+**Loaded guidance used.** Entry, Plan, Phase, Engineering, iOS, Architecture, Data, Feed/upload, Tools, Failure, Verification, Records, Checkpoints, Documentation, Notes, Note lifecycle, Cookbooks.
+
+## location
+
+**Decision and next work.** Give permission observation, location sampling, and live-availability subscription explicit owners scoped to the pickup journey. Reevaluate authorization on entering/resuming the scene and returning from Settings. Handle not determined, denied, restricted, revoked, and reduced accuracy with contextual requests and usable recovery. Stop prohibited or no-longer-needed sampling and unregister/cancel work on dismissal; also guard every callback with current session/subscription identity because disposal cannot guarantee no late callback.
+
+Store location measurement time and accuracy with the coordinate; do not substitute receive time or display an undated coordinate as current presence. Define acceptable age/accuracy and approximate/stale presentation using the pickup product's requirements. No freshness threshold was supplied, so keep it a visible decision instead of inventing one. Preserve only the needed proximity data. Separate location/business state from map rendering and throttle rendering while respecting user viewport control.
+
+For availability, inspect event identity, revision/order, snapshot, and replay/resync contracts. On reconnect, show reconnecting/stale state until an authoritative snapshot or supported replay closes the gap. Deduplicate by event/transition identity, reject obsolete revisions, and prevent a previous subscription from updating the current journey. A reopened socket alone is insufficient. If the API cannot recover omitted events, name the missing reconciliation capability and keep freshness acceptance open; do not invent a backend endpoint or resolve business transitions by delivery order.
+
+Background behavior is already requested acceptance, so keep it in scope. Determine the expected behavior while backgrounded and the justified platform access/configuration. Implement supported local lifecycle behavior within that contract, but do not request broader permission merely to keep a subscription alive. Do not drop the device criterion because no physical device is attached.
+
+**Verification and limits.** Test active and Settings-driven permission changes, stale/low-accuracy samples, dismissal followed by late callback, rapid updates, background/foreground, and reopen. For reconnect, drop events and send duplicates/out-of-order events; assert both displayed map state and authoritative pickup availability. Verify revocation stops requests and old sessions cannot mutate a new screen. Simulated coordinates can establish selected logic/UI outcomes. Real background continuity, location accuracy, energy, and thermal behavior require a named physical device and recorded conditions. No device is attached and no app artifacts were supplied, so background acceptance remains open while independent logic/UI work can proceed.
+
+**Records that would change.** Update the pickup plan with explicit freshness/accuracy, reconnection, permission, and background criteria and dependencies; update the owning note, verified architecture/product contracts, testing evidence, and checkpoint. The checkpoint's next device action should name the actual background journey, prerequisites, and assertions once the app is available. Capture a location subscription cookbook only after that procedure has been exercised.
+
+**Loaded guidance used.** Entry, Plan, Phase, Engineering, iOS, Architecture, Data, Interaction, Location, Tools, Failure, Verification, Records, Checkpoints, Documentation, Notes, Note lifecycle, Cookbooks.
+
+## editor
+
+**Decision and next work.** Inspect the existing project format and media ownership before changing serialization. Separate durable project document, editing session, preview resources, and export job. Imports need durable asset ownership or verified persistent access; a temporary path is insufficient. Keep old projects readable, define schema evolution and an atomic save/autosave boundary, and preserve old documents/assets until migration succeeds. Represent recoverable interrupted work explicitly without resetting projects after a failed save.
+
+Model a trim gesture/committed edit as a meaningful undo transaction using the existing editing conventions. Record prior/new trim ranges or document revisions, group continuous drag updates into the intended step, clear redo after a new committed edit, and decide selection/playhead behavior independently of durable edits. Determine whether undo history must survive relaunch from the plan; project recovery alone does not imply durable undo history. Use media time/timebase representations and explicit trim endpoint rules rather than accumulating floating-point seconds.
+
+Export an immutable snapshot of a defined project revision. Preview may follow later edits, but export must not read the mutable editing session while rendering. Give each export its own identity, state, temporary output, and resource ownership. Arbitrate cancellation/completion through one owner and a defined finalization commit point so exactly one outcome wins. Establish the intended user-visible cancel-after-finalization behavior in the plan. Late completion must not turn a cancelled job into success, clear a newer job, or delete the newer output. A failed/cancelled export leaves project and originals intact and removes only its own incomplete output according to policy.
+
+Use supported SDK media APIs after inspecting deployment/toolchain constraints. Validate variable-frame-rate trimming, audio/video synchronization, orientation, tracks, duration, and other supported media properties. Bound preview/export resources and make any memory/disk/time budget specific to representative media and named devices. Preserve export recovery information across interruption without promising arbitrary background continuation or unsupported byte/frame resume.
+
+**Verification and limits.** Test trim/undo/redo/new-edit invalidation; save/reopen; representative old-project migration; interrupted/failed save; missing source media; low disk; and restoration after termination. Control cancellation before start, during rendering/finalization, and racing completion in both orders; assert one settled result and operation-specific cleanup. Export representative VFR material with audio and inspect the actual output: playability, intended trimmed content, duration, tracks, dimensions, timing, and sync. Exercise the app's edit, preview, undo, export, cancel, retry route. Logic tests or progress reaching 100% cannot establish a playable export. Device interruption/resource criteria need actual device results. No implementation or media output was supplied, so none of these criteria is established.
+
+**Records that would change.** Update the existing editor plan, owning project-format/export note(s) according to actual ownership, architecture/compatibility references once implemented, evidence matrix, and checkpoint. Preserve/cross-link prior format rationale when only partly superseded; compatibility means it may still be current. Record export/recovery limitations as facts only when established. Add an edit-operation cookbook after the complete save/undo/preview/export procedure is proven.
+
+**Loaded guidance used.** Entry, Plan, Phase, Engineering, iOS, Architecture, Data, Interaction, Media, Tools, Failure, Verification, Records, Checkpoints, Documentation, Notes, Note lifecycle, Cookbooks.
+
+## concurrency
+
+**Decision and next work.** Keep the existing authentication actor. The failure is reentrancy across `await`, not absence of an actor. Add or reuse an authentication/session generation and account identity owned by that actor. A refresh captures its generation, account, and operation identity before calling the API. Logout and account switch invalidate the generation before cancelling/clearing session state. Every post-await success, failure, and cleanup checks the captured identity before changing the token, error, or in-flight operation. Changing A to B and back to A must still reject a refresh from the old A session.
+
+Preserve existing refresh coalescing if present; an obsolete request must not clear a newer refresh task. Keep credential mutation under the existing secure-storage/session contract. If credential persistence itself suspends, inspect the complete write/invalidation protocol so a check followed by another await does not reintroduce the stale write; adding only one guard after the network await may be insufficient. Do not solve this by unchecked sendability, a replacement concurrency framework, or assuming cooperative cancellation prevents delivery.
+
+**Verification and limits.** Use a controllable API response through public refresh/logout/account-switch actions. Start A refresh, log out, deliver success, and assert the session stays logged out and no token is restored. Repeat late error/cleanup, cancellation ignored by the API, switch to B plus successful B refresh before A completes, A-to-B-to-A, and overlapping refreshes under existing semantics. Assert actual session/token effects and ownership, not just cancellation-call counts. Exercise the real logout/return route where app integration matters. No source or test harness was supplied; actor isolation is the only stated implementation fact, and no fix has run.
+
+**Records that would change.** Update the existing auth bug/phase record without creating a broad architecture plan solely for this focused fix. Update the owning note with the suspension invariant and alternatives, affected auth contract/testing reference, and checkpoint with exact regression evidence when available. Do not mark it fixed based on the new guard's existence alone.
+
+**Loaded guidance used.** Entry, Phase, Engineering, iOS, Architecture, Data, Failure, Verification, Tools, Records, Checkpoints, Documentation, Notes, Note lifecycle.
+
+## accessibility
+
+**Decision and next work.** Treat the whole upload journey as the acceptance unit: choose source, begin upload, understand progress, cancel, recover/retry, and recognize success/error. Use the established design system and string resources. Replace fixed sizing that clips the primary action with content-driven layout/reflow and reachable scrolling at supported accessibility text sizes; verify keyboard and safe-area interactions. Add a visible standard Cancel action and an accessible action equivalent to drag-to-cancel so the gesture is optional.
+
+Give progress a textual/status representation and appropriate accessible label/value/traits, backed by real operation state. Announce meaningful stage changes without repeatedly overwhelming VoiceOver on every percentage tick; do not claim remote processing completion from transfer percentage. Establish sensible reading/grouping and focus after source selection, errors, cancellation, and completion. Replace/reduce motion while preserving feedback under Reduce Motion. Check semantic contrast and status meaning independently of color.
+
+Audit the supported Arabic locale through the project's localization system: actual translations, plural/number formatting, expansion, logical leading/trailing layout, directional controls and intentionally invariant media elements. Do not infer right-to-left correctness from translated literals or mirror all content mechanically. Inspect mixed source/file-name text and focus order in the actual Arabic journey.
+
+**Verification and limits.** Run the upload journey using VoiceOver, largest supported Dynamic Type settings, Reduce Motion, and Arabic RTL, including relevant combinations rather than only four isolated screenshots. Check discoverability and activation of Cancel, reachable primary actions, status comprehension without color, focus restoration, and error/retry flow. Inspect supported compact/large layouts and contrast appearances. Use source checks, automated audits, and screenshots as supplementary evidence; none proves a person can complete the journey. Source labels exist, but no running-app accessibility evidence was provided, so accessibility acceptance remains unverified here.
+
+**Records that would change.** Update the upload plan's accessibility criteria and per-setting journey evidence, the owning behavior note, actual component/localization references where changed, and checkpoint with the next runtime accessibility pass. Do not mark accessibility complete from source labels or translate strings into a claimed tested locale. Record exact simulator/device, OS, settings, route, and findings after execution.
+
+**Loaded guidance used.** Entry, Plan, Phase, Engineering, iOS, Interaction, Feed/upload, Tools, Verification, Records, Checkpoints, Documentation, Notes, Note lifecycle.
+
+## continuity
+
+**Decision and next work.** Treat the checkpoint's cancellation-complete statement as a claim to reconcile. Recover the linked active plan, code revision, result artifacts, current source, and working-tree changes before extending work. Preserve the unrelated design edits: inspect their paths/diff, edit only necessary export areas, and avoid reset/clean/blanket checkout or commits that sweep in those edits. If an overlapping edit affects export, inspect and preserve it instead of assuming ownership.
+
+The plan requires playable output and device termination recovery. A macOS logic-test result does not satisfy either automatically. Inspect whether it actually covers cancellation outcome arbitration at the current revision; retain valid evidence without rerunning solely because the session changed. Correct the evidence/status drift immediately in repository records once those records are available. An implemented export note may remain implemented with explicit gaps if code supports it, but the owning phase cannot stay complete under the supplied criteria.
+
+Finish independently verifiable work first: inspect operation identity and cancellation/finalization cleanup, run current focused logic checks when changes or missing coverage justify them, and use discovered tools to produce and inspect an actual playable output through the relevant app/media route if the available environment supports it. An output inspection must examine the asset, not merely test that an output URL exists. Do not equate a host-side export test with the required native journey or device recovery. Prepare the exact device termination/relaunch recovery procedure and keep its criterion open pending a device. Do not expand into the unrelated design work or silently weaken acceptance.
+
+**Verification and limits.** The only supplied execution claim is a macOS logic pass, without command/revision/artifact details. It supports at most the behaviors actually covered once inspected. The existing complete status is contradicted by missing required evidence. Here, application records and source are absent, so even that artifact cannot be checked and no export test can actually run. The immediate executable action in a real checkout is status/diff and plan/artifact recovery; subsequent output and device checks depend on those discoveries. No phase completion is justified from this exercise.
+
+**Records that would change.** Correct the checkpoint to distinguish claimed implementation, inspected implementation, macOS logic evidence, missing playable-output/device results, and preserved design edits. Update phase evidence/status, the current note's verification gap or a durable finding note if direction changes, and any current reference falsely claiming verified recovery. Link exact result artifacts instead of pasting logs. Leave a next action with prerequisites, reproduction steps, assertions, and the active code/worktree scope.
+
+**Loaded guidance used.** Entry, Phase, Review, Engineering, iOS, Media, Architecture, Data, Tools, Failure, Verification, Records, Checkpoints, Documentation, Notes, Note lifecycle.
+
+## evidence
+
+**Decision and readiness summary.** Do not complete the phase or call the release ready. The scenario reports simulator compilation and passing logic tests. It also reports a UI-test launch failure, no real-device startup measurements, and no signed archive validation. The plan requires a critical simulator journey and a real-device startup budget; both are unmet. Publishing is not authorized.
+
+| Supplied result | Warranted statement | Remaining action |
+| --- | --- | --- |
+| Simulator app compile succeeded | The specified target/configuration compiled, once its artifact is inspected; no journey proof | Record actual target, revision, SDK, command, environment, artifact |
+| Logic tests passed | Covered logic behaviors passed under that harness and its mock boundaries | Inspect coverage/revision and list the behaviors actually established |
+| Simulator UI test failed to launch | The test attempt failed before the journey ran | Diagnose launch/setup using runner logs and result bundle, repair within scope, rerun the critical route |
+| No device startup measurement | The required startup budget is unverified | Run the named workload/configuration on the required supported device and retain measurements |
+| No signed archive validation | Distribution artifact readiness is unverified | Inspect the project's existing release/signing setup and validate the actual archive if available and authorized by preparation scope |
+
+Do not invent a startup threshold, device, or archive credential. Recover the plan's stated budget/workload; if it omits these, record the measurable requirement that needs resolution rather than inventing a passing number. Work on independent evidence collection and the simulator launch failure now in a real checkout. Do not install/upgrade Xcode, change global toolchain selection, alter signing, or add dependencies simply to fit a guessed test command. Publishing remains a separate action; this readiness request does not authorize TestFlight/App Store submission.
+
+**Verification and limits.** Match each artifact to current code, configuration, toolchain, and the claimed criterion. A launch failure is not a failed assertion within the critical journey and cannot support either a journey pass or a product-defect diagnosis without logs. Record the failed attempt separately, then a new run with a fresh artifact path after a justified fix. Device startup requires actual hardware measurement; simulator smoothness or compile time is not a substitute. Whether signed archive validation is an explicit phase gate must come from the plan, but it remains a release-readiness gap regardless. No raw artifacts were provided here, so even the reported passes have not been independently verified.
+
+**Records that would change.** Prepare a readiness report in the established release/phase record with passed, failed-attempt, and not-run evidence separately. Keep the phase open and link its unmet simulator/device criteria. Update the checkpoint with the UI-launch reproducer, next diagnostic command after discovery, required device workload, archive gap, and publication boundary. Correct any owning note/reference that overstates readiness; do not create a second source of truth for release status. No phase criteria are deferred without a separately authorized explicit change preserving the reason.
+
+**Loaded guidance used.** Entry, Phase, Review, Engineering, iOS, Tools, Verification, Records, Checkpoints, Documentation, Notes, Note lifecycle.
+
+## Ambiguity and conflicting guidance
+
+No direct conflict prevented a decision. The main boundaries were coherent: established architecture wins over new-app defaults; existing authorization carries forward; independent local work can proceed while an integration/device criterion remains open; and unrun acceptance never becomes a pass.
+
+The following points require application context or careful interpretation:
+
+1. **New-app choices.** Swift/SwiftUI is an explicit default, while deployment floor, persistence library, and design system are not selected for the reader. The skill supplies decision criteria rather than a concrete baseline. The field-journal plan therefore needs a recorded persistence/deployment choice; whether an OS-floor change is consequential depends on intended users. This is a gap to resolve from project context, not a reason to demand approval for every routine file or model choice.
+2. **Implementation versus completion.** Note lifecycle permits an implemented note with device/release gaps, while Records forbids a complete phase with unmet required checks. Those are compatible statuses with different meanings, but a careless reader could use the note status as phase evidence. The continuity/evidence responses explicitly separate them.
+3. **Readiness and deferral.** Plan allows an independent local phase to be ready despite a blocked later integration; Records requires explicit authorization to change required acceptance. Splitting upload work must not silently rewrite the original safe-retry promise or certify the whole feature. Likewise, absence of a device does not defer location background acceptance automatically.
+4. **Product semantics remain inputs.** Location freshness/accuracy, cancel-versus-finalization semantics, durable undo history, offline saved-content guarantees, and media/performance budgets are not decided by the generic references. Plans/current contracts must own these decisions; arbitrary constants or inferred behavior would go beyond the evidence.
+5. **Source of technical authority.** The iOS references link Apple/Swift material and require target-SDK verification. I loaded the local references but did not fetch external documents or verify specific APIs, because this exercise supplied no target implementation/toolchain and required next-work decisions. No claim of current SDK availability is made. Actual code choices must perform that check.
+6. **Unavailable records.** The entry workflow asks to inspect current code and records. The scenario instruction explicitly provides no real app artifacts. I therefore describe those reads as next actions and do not claim I loaded fictional plans, source, runtime output, or screenshots. The only file created is this evaluation response.
+
+The per-scenario record changes above are hypothetical. No app records, lifecycle files, status, archive, external message, or publishing state were changed.

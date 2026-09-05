@@ -1,0 +1,34 @@
+COMMAND: swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -module-cache-path /private/tmp/project-thread-feed-eval/artifacts/module-cache -parse-as-library /private/tmp/project-thread-feed-eval/artifacts/baseline/FeedStore.swift /private/tmp/project-thread-feed-eval/Tests/FeedStoreRegression.swift -o /private/tmp/project-thread-feed-eval/artifacts/baseline/feed-regression
+EXIT: 0
+COMMAND: /private/tmp/project-thread-feed-eval/artifacts/baseline/feed-regression
+FAIL stale page success, old finishes last: stale completion changed refreshed state: items=["fresh", "stale"], cursor=stale-2, loading=false, error=nil
+FAIL stale page failure, old finishes last: stale completion changed refreshed state: items=["fresh"], cursor=fresh-1, loading=false, error=offline
+FAIL stale page cancellation, old finishes last: stale completion changed refreshed state: items=["fresh"], cursor=fresh-1, loading=false, error=CancellationError()
+FAIL stale page success, old finishes first: stale completion changed newer pending state: items=["old", "stale"], cursor=stale-2, loading=false, error=nil
+FAIL stale page failure, old finishes first: stale completion changed newer pending state: items=["old"], cursor=old-1, loading=false, error=offline
+FAIL stale page cancellation, old finishes first: stale completion changed newer pending state: items=["old"], cursor=old-1, loading=false, error=CancellationError()
+FAIL stale refresh success, old finishes last: stale completion changed refreshed state: items=["stale"], cursor=stale-2, loading=false, error=nil
+FAIL stale refresh failure, old finishes last: stale completion changed refreshed state: items=["fresh"], cursor=fresh-1, loading=false, error=offline
+FAIL stale refresh cancellation, old finishes last: stale completion changed refreshed state: items=["fresh"], cursor=fresh-1, loading=false, error=CancellationError()
+FAIL stale refresh success, old finishes first: stale completion changed newer pending state: items=["stale"], cursor=stale-2, loading=false, error=nil
+FAIL stale refresh failure, old finishes first: stale completion changed newer pending state: items=["old"], cursor=old-1, loading=false, error=offline
+FAIL stale refresh cancellation, old finishes first: stale completion changed newer pending state: items=["old"], cursor=old-1, loading=false, error=CancellationError()
+FAIL stale cleanup during fresh pagination: old cleanup interrupted fresh page: items=["fresh"], cursor=fresh-1, loading=false, error=offline
+PASS page failure retries same cursor
+PASS refresh failure preserves snapshot and retries
+FAIL failed new refresh still supersedes old page: failed refresh allowed superseded page to commit
+FAIL stable deduplication, duplicate requests and exhaustion: refresh duplicates were not removed stably
+PASS empty pages and repeated cursors
+FAIL cancel page then late success: cancellation must retain useful state without alert: items=["old", "stale"], cursor=stale-2, loading=false, error=nil
+FAIL cancel page then late failure: cancellation must retain useful state without alert: items=["old"], cursor=old-1, loading=false, error=offline
+FAIL cancel page then late cancellation: cancellation must retain useful state without alert: items=["old"], cursor=old-1, loading=false, error=CancellationError()
+FAIL page throws cancellation without caller flag: cancellation must retain useful state without alert: items=["old"], cursor=old-1, loading=false, error=CancellationError()
+FAIL page reports URL cancellation: cancellation must retain useful state without alert: items=["old"], cursor=old-1, loading=false, error=Error Domain=NSURLErrorDomain Code=-999 "(null)"
+FAIL cancel refresh then late success: cancellation must retain useful state without alert: items=["stale"], cursor=stale-2, loading=false, error=nil
+FAIL cancel refresh then late failure: cancellation must retain useful state without alert: items=["old"], cursor=old-1, loading=false, error=offline
+FAIL cancel refresh then late cancellation: cancellation must retain useful state without alert: items=["old"], cursor=old-1, loading=false, error=CancellationError()
+FAIL refresh throws cancellation without caller flag: cancellation must retain useful state without alert: items=["old"], cursor=old-1, loading=false, error=CancellationError()
+FAIL refresh reports URL cancellation: cancellation must retain useful state without alert: items=["old"], cursor=old-1, loading=false, error=Error Domain=NSURLErrorDomain Code=-999 "(null)"
+FAIL pre-cancelled actions do not begin work: pre-cancelled refresh performed a request
+RESULT: 3 passed, 26 failed
+EXIT: 1

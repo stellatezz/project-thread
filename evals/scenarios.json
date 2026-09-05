@@ -1,0 +1,52 @@
+[
+  {
+    "id": "existing-app",
+    "request": "Add a saved-items flow to our iOS 16 UIKit app, using its existing coordinator and injected repositories. We already approved a local saved-items slice. Do not replace the navigation system.",
+    "context": "Server-side cross-device sync is a later roadmap item. Local IDs survive relaunch. Existing project has XCTest and UI test targets; no simulator result is supplied."
+  },
+  {
+    "id": "new-app",
+    "request": "Start a native iOS field journal. The first journey is create a text entry, save, relaunch, and reopen it. Build one useful slice and record how to continue.",
+    "context": "No app architecture, persistence library, deployment target, or design system has been selected. The product does not yet require accounts, backend sync, Android, or rich media."
+  },
+  {
+    "id": "feed",
+    "request": "Fix pull-to-refresh mixing old pages into the new feed, and verify scrolling does not retain all full-resolution media.",
+    "context": "Existing FeedStore has async page requests. Responses may arrive after cancellation; cursors belong to a query snapshot. Full-resolution 12-megapixel images are cached in a dictionary with no eviction."
+  },
+  {
+    "id": "upload",
+    "request": "People lose a video upload after force-quitting. Preserve recoverable work and make retry safe.",
+    "context": "Only a percentage and a temporary source URL are stored in memory. The server can accept an upload before the response reaches the client. Server idempotency and lookup-by-client-ID support are not documented."
+  },
+  {
+    "id": "location",
+    "request": "Make the nearby pickup screen recover when location permission changes or the live availability stream reconnects.",
+    "context": "The screen displays the last coordinate without its timestamp. A callback can arrive after the screen is dismissed. Reconnect may omit events and deliver duplicates. Background behavior is a requested acceptance criterion; no physical device is attached."
+  },
+  {
+    "id": "editor",
+    "request": "Add trim undo/redo and cancellable export to our clip editor without losing projects after interruption.",
+    "context": "Projects reference imported files, and preview and export currently share mutable editing state. Existing saved projects must remain readable. Export completion may race cancellation. Representative media includes variable frame rate and audio."
+  },
+  {
+    "id": "concurrency",
+    "request": "Stop a late authentication refresh from logging someone back in after logout. The service is already an actor, so keep the change focused.",
+    "context": "refresh() awaits an API and then writes the token. logout() can run while it is suspended. Cancellation of the request is cooperative; account switching uses the same service."
+  },
+  {
+    "id": "accessibility",
+    "request": "Finish the upload journey for VoiceOver, large Dynamic Type, Reduce Motion, and the supported Arabic locale.",
+    "context": "The primary action clips at accessibility sizes; progress is a color-only ring; drag-to-cancel is the only cancel action. Source labels exist, but no running-app accessibility evidence is available."
+  },
+  {
+    "id": "continuity",
+    "request": "Continue the editor export phase using only the repository records. Finish whatever can be verified now.",
+    "context": "Checkpoint says export cancellation is complete. The active plan requires a playable output check plus device termination recovery. Only a macOS logic-test result exists. Working tree contains unrelated design edits that must survive."
+  },
+  {
+    "id": "evidence",
+    "request": "Prepare the release-readiness summary from our results and complete the phase if justified.",
+    "context": "The app compiles for simulator and logic tests pass. The simulator UI test failed to launch. No device measurements or signed archive validation ran. The plan requires a critical simulator journey and real-device startup budget. Publishing was not authorized."
+  }
+]

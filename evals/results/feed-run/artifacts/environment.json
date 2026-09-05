@@ -1,0 +1,14 @@
+{
+  "utc_time": "2026-09-05T07:38:59Z",
+  "platform": "macOS-15.3.1-arm64-arm-64bit-Mach-O",
+  "swift": "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)\nTarget: arm64-apple-macosx15.0",
+  "xcode": "Xcode 16.4\nBuild version 16F6",
+  "files_sha256": {
+    "FeedStore.swift": "d72641149834f078e1664c987ee9960c4f3e4504ef5a2f819c6ff42992dd1a8b",
+    "Tests/FeedStoreRegression.swift": "010e540bdb961746bb47b4efdcfc0909e9faa6088fa82811b3f07b095a10a3a4",
+    "scripts/check.py": "897315f8eded391131331906172b2cb22d24d9cc5d04617f956e77a4c6784c6b",
+    "artifacts/baseline/FeedStore.swift": "5b41ad8724997477ceff902c214c7bf76ae9e8911ba447450723355ca30f645d"
+  },
+  "workspace": "/private/tmp/project-thread-feed-eval",
+  "git": "isolated fixture copy; no Git repository initialized"
+}

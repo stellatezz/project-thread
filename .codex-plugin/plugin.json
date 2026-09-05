@@ -1,0 +1,32 @@
+{
+  "name": "project-thread",
+  "version": "0.1.0",
+  "description": "Eleven connected skills for project continuity, maintainable engineering, and native iOS client development.",
+  "author": {
+    "name": "Project Thread contributors"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Project Thread",
+    "shortDescription": "Keep product intent, engineering, and evidence connected.",
+    "longDescription": "Plan and implement software in verified phases with authoritative docs, Agent Notes, cookbooks, checkpoints, and conditional iOS guidance.",
+    "developerName": "Project Thread contributors",
+    "category": "Productivity",
+    "capabilities": [
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Resume the next agreed feature phase.",
+      "Plan and implement a reliable iOS journey.",
+      "Review this change and its evidence."
+    ]
+  },
+  "license": "MIT",
+  "keywords": [
+    "engineering",
+    "ios",
+    "swift",
+    "planning",
+    "documentation"
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Thread"
+  short_description: "Keep plans, decisions, and sessions connected"
+  default_prompt: "Use $project-thread to resume this project from its recorded state and continue the next agreed feature phase."
