@@ -1,4 +1,0 @@
-interface:
-  display_name: "Project Thread Documentation"
-  short_description: "Keep current facts and learned procedures accurate"
-  default_prompt: "Use $project-thread-documentation to update the authoritative docs and affected cookbooks."

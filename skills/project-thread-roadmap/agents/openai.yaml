@@ -1,4 +1,0 @@
-interface:
-  display_name: "Project Thread Roadmap"
-  short_description: "Sequence area roadmaps, requirements, and dependencies"
-  default_prompt: "Use $project-thread-roadmap to update this area roadmap and its cross-area dependencies."

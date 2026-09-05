@@ -1,4 +1,0 @@
-interface:
-  display_name: "Project Thread Agent Notes"
-  short_description: "Preserve decisions, alternatives, and verification"
-  default_prompt: "Use $project-thread-agent-notes to record this decision and its lifecycle accurately."

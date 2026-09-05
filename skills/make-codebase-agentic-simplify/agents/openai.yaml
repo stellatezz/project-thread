@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Codebase Agentic Simplify"
+  short_description: "Investigate concrete ways to remove complexity"
+  default_prompt: "Use $make-codebase-agentic-simplify to find evidence-backed simplification proposals."

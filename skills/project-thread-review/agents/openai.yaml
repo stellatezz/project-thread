@@ -1,4 +1,0 @@
-interface:
-  display_name: "Project Thread Review"
-  short_description: "Assess behavior, contracts, and verification evidence"
-  default_prompt: "Use $project-thread-review to review this change against its acceptance criteria."

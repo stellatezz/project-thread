@@ -1,4 +1,0 @@
-interface:
-  display_name: "Project Thread Engineering"
-  short_description: "Design and verify maintainable software changes"
-  default_prompt: "Use $project-thread-engineering to design and implement this feature using the project contracts."

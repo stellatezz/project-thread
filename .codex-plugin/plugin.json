@@ -1,16 +1,16 @@
 {
-  "name": "project-thread",
-  "version": "0.1.0",
-  "description": "Eleven connected skills for project continuity, maintainable engineering, and native iOS client development.",
+  "name": "make-codebase-agentic",
+  "version": "0.2.0",
+  "description": "Give coding agents the context, workflows, and checks to build maintainable software with readable repository knowledge.",
   "author": {
-    "name": "Project Thread contributors"
+    "name": "Make Codebase Agentic contributors"
   },
   "skills": "./skills/",
   "interface": {
-    "displayName": "Project Thread",
-    "shortDescription": "Keep product intent, engineering, and evidence connected.",
-    "longDescription": "Plan and implement software in verified phases with authoritative docs, Agent Notes, cookbooks, checkpoints, and conditional iOS guidance.",
-    "developerName": "Project Thread contributors",
+    "displayName": "Make Codebase Agentic",
+    "shortDescription": "Readable codebase knowledge and verified engineering.",
+    "longDescription": "Equip repositories for people and coding agents with scoped instructions, precise documentation, engineering guidance, delivery records, and native iOS references.",
+    "developerName": "Make Codebase Agentic contributors",
     "category": "Productivity",
     "capabilities": [
       "Write"

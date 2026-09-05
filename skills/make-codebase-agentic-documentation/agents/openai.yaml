@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Codebase Agentic Documentation"
+  short_description: "Structure readable docs and precise code explanations"
+  default_prompt: "Use $make-codebase-agentic-documentation to improve these docs while preserving complete behavior and clear ownership."

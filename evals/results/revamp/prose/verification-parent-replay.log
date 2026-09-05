@@ -1,0 +1,18 @@
+Parent replay of retained verification.py
+Exit code: 0
+
+PASS: README command, copied verbatim from its Python body
+PASS: save creates destination, round-trip matches, input unchanged, no temp left
+PASS: overwrite syncs first, uses same parent, preserves old bytes until replacement
+PASS: set serialization fails before filesystem changes
+PASS: circular input raises ValueError and preserves old file
+PASS: missing parent raises and is not created
+PASS: fsync OSError reaches caller, old file survives, temporary file removed
+PASS: replace OSError reaches caller, old file survives, temporary file removed
+PASS: cleanup failure replaces surfaced error and leaves temporary file
+PASS: JSON key and tuple conversion plus default NaN acceptance
+PASS: annotations do not enforce a dictionary on save or load
+PASS: malformed JSON raises without repair
+PASS: invalid UTF-8 raises without mutation
+PASS: missing file load raises FileNotFoundError
+PASS: 13 storage checks, README example, and source SHA256 unchanged

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Codebase Agentic Plan"
+  short_description: "Turn feature requirements into verifiable phases"
+  default_prompt: "Use $make-codebase-agentic-plan to turn these requirements into a feature plan linked to its owning roadmap."

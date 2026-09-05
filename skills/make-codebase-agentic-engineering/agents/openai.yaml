@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Codebase Agentic Engineering"
+  short_description: "Design and verify maintainable software changes"
+  default_prompt: "Use $make-codebase-agentic-engineering to design and implement this feature using the project contracts."

@@ -6,7 +6,7 @@ Owning roadmap: [Skill suite](../roadmaps/skill-suite/README.md).
 
 ## Outcome and scope
 
-Deliver an independently versioned Project Thread repository with eleven skills, a shared engineering discipline, native iOS guidance, conditional location/feed/editor references, realistic evaluations, plugin metadata, and repeatable installation. The initial working directory contained only a daily-skill scaffold; completing the nine-skill foundation is part of satisfying the complete-bundle requirement.
+Deliver an independently versioned Make Codebase Agentic repository with eleven skills, a shared engineering discipline, native iOS guidance, conditional location/feed/editor references, realistic evaluations, plugin metadata, and repeatable installation. The initial working directory contained only a daily-skill scaffold; completing the nine-skill foundation is part of satisfying the complete-bundle requirement.
 
 The user's supplied plan authorizes this implementation and Codex installation. Product examples illustrate client workflows and do not prescribe infrastructure. No iOS app, backend, Android support, or publishing is included.
 

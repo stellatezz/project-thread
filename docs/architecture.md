@@ -1,14 +1,16 @@
 # Bundle architecture
 
-Project Thread ships eleven sibling skill folders under `skills/`. Each contains a `SKILL.md` entry point and `agents/openai.yaml` discovery metadata. Conditional detail stays in the owning skill's `references/`. Sibling relative links work in the complete plugin and in either installer destination.
+Make Codebase Agentic ships eleven sibling skill folders under `skills/`. Each contains a `SKILL.md` entry point and `agents/openai.yaml` discovery metadata. Conditional detail stays in the owning skill's `references/`. Sibling relative links work in the complete plugin and in either installer destination.
+
+The documentation skill owns document structure, prose quality, codebase explanations, instruction hierarchy, and worked examples. Setup uses its placement and instruction guidance; engineering uses its code explanations; review checks meaning and organization. Engineering owns the implementation's code structure. These references support both human reading and precise agent actions without adding competing entry points.
 
 The daily skill routes work. Setup maps existing records, roadmap sequences area/initiative outcomes, plan owns feature requirements and criteria, and phase executes agreed work. Engineering supplies implementation judgment; iOS adds platform-specific architecture, interaction, reliability, and verification. Documentation owns facts/procedures; Agent Notes own rationale/lifecycle. Review assesses results, while simplification investigates evidence-backed proposals.
 
-Shared [record ownership](../skills/project-thread/references/records.md) and [checkpoints](../skills/project-thread/references/checkpoints.md) are reused across entry points. Notes have one [lifecycle owner](../skills/project-thread-agent-notes/references/lifecycle.md). A project can reuse established filenames and lifecycle equivalents without creating duplicate authority.
+Shared [record ownership](../skills/make-codebase-agentic/references/records.md) and [checkpoints](../skills/make-codebase-agentic/references/checkpoints.md) are reused across entry points. Notes have one [lifecycle owner](../skills/make-codebase-agentic-agent-notes/references/lifecycle.md). A project can reuse established filenames and lifecycle equivalents without creating duplicate authority.
 
 Substantial projects use an area or initiative folder whose overview links its plans, issues, phases, and relevant Agent Notes. A lightweight project index summarizes shared priorities and cross-area dependencies. A shared capability has one owning plan; consumers link to that owner and retain their own acceptance criteria. Feature requirements belong to their plan or existing requirements authority, while shared business rules remain in product documentation. Agent Notes stay canonical in their shared lifecycle tree; issues and phase records own work status and verification. In this repository, the existing [roadmap file](roadmap.md) serves as the index, new delivery records are grouped under `docs/roadmaps/`, and the completed v1 plan retains its established path. The [roadmap decision](../.agents/notes/implemented/process/2026-09-05-area-roadmaps.md) records this refinement.
 
-The [iOS skill](../skills/project-thread-ios/SKILL.md) loads engineering and selects only relevant iOS references. It does not mandate a third-party state-management library, persistence engine, coverage percentage, infrastructure footprint, or arbitrary performance target. Backend contracts remain inputs; missing capabilities become explicit dependencies. The framework separates compiled, logic-tested, simulator-tested, device-tested, and unverified behavior.
+The [iOS skill](../skills/make-codebase-agentic-ios/SKILL.md) loads engineering and selects only relevant iOS references. It does not mandate a third-party state-management library, persistence engine, coverage percentage, infrastructure footprint, or arbitrary performance target. Backend contracts remain inputs; missing capabilities become explicit dependencies. The framework separates compiled, logic-tested, simulator-tested, device-tested, and unverified behavior.
 
 ## Helpers and packaging
 
@@ -17,5 +19,7 @@ The [iOS skill](../skills/project-thread-ios/SKILL.md) loads engineering and sel
 - [package.py](../scripts/package.py) validates and writes a deterministic ZIP from explicit distributable roots, excluding build caches and Git internals. It includes the source and evidence needed to inspect/repeat evaluation.
 
 The plugin manifest discovers the same `skills/` tree. Direct installation does not register a marketplace; plugin UI installation is a separate distribution option. Runtime builds, simulators, signing, and device tools come from the adopting application.
+
+The installer also supports [migration from Project Thread](migration.md). It installs the new skills before removing matching old links, including broken links to a moved checkout. No replacement aliases remain in the public inventory. Historical evaluation artifacts retain their original names and content.
 
 The [implementation decision](../.agents/notes/implemented/process/2026-09-05-engineering-ios-suite.md) records why this structure was chosen and its evidence limitations.

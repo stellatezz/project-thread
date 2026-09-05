@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Codebase Agentic Phase"
+  short_description: "Implement and verify the next agreed feature phase"
+  default_prompt: "Use $make-codebase-agentic-phase to resume and complete the next agreed phase."

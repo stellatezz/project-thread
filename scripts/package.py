@@ -26,7 +26,7 @@ def package(root: Path) -> Path:
         paths.extend(path for path in (root / name).rglob("*")
                      if path.is_file() and not any(part in {"__pycache__", ".build"} for part in path.parts)
                      and path.suffix != ".pyc")
-    output = root / "dist" / f"project-thread-{version}.zip"
+    output = root / "dist" / f"make-codebase-agentic-{version}.zip"
     output.parent.mkdir(exist_ok=True)
     with tempfile.NamedTemporaryFile(dir=output.parent, delete=False) as handle:
         temporary = Path(handle.name)
@@ -35,7 +35,7 @@ def package(root: Path) -> Path:
             for path in sorted(paths):
                 if path.is_symlink():
                     raise ValueError(f"Distribution source must be a regular file: {path}")
-                entry = ZipInfo("project-thread/" + path.relative_to(root).as_posix(), (2026, 1, 1, 0, 0, 0))
+                entry = ZipInfo("make-codebase-agentic/" + path.relative_to(root).as_posix(), (2026, 1, 1, 0, 0, 0))
                 entry.compress_type = ZIP_DEFLATED
                 entry.create_system = 3
                 entry.external_attr = 0o100644 << 16

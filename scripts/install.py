@@ -13,8 +13,11 @@ from check import validate_bundle
 BUNDLE = Path(__file__).resolve().parents[1]
 
 
-def install(bundle: Path, base: Path, *, dry_run: bool = False, remove: bool = False) -> list[str]:
+def install(bundle: Path, base: Path, *, dry_run: bool = False, remove: bool = False,
+            legacy_bundle: Path | None = None) -> list[str]:
     """Preflight every link before writing; removal only touches this bundle's links."""
+    if remove and legacy_bundle is not None:
+        raise ValueError("Use --migrate-from when installing, not with --remove")
     errors = validate_bundle(bundle)
     if errors:
         raise ValueError("Invalid source bundle:\n" + "\n".join(errors))
@@ -28,6 +31,7 @@ def install(bundle: Path, base: Path, *, dry_run: bool = False, remove: bool = F
 
     actions = []
     blockers = []
+    legacy_links = []
     for source in sorted((bundle / "skills").iterdir()):
         if not source.is_dir():
             continue
@@ -44,10 +48,17 @@ def install(bundle: Path, base: Path, *, dry_run: bool = False, remove: bool = F
         else:
             action = "create"
         actions.append((action, source, destination))
+        if legacy_bundle is not None:
+            old_name = source.name.replace("make-codebase-agentic", "project-thread", 1)
+            old_link = target / old_name
+            old_source = legacy_bundle.expanduser().resolve() / "skills" / old_name
+            if old_link.is_symlink() and old_link.resolve() == old_source.resolve():
+                legacy_links.append((old_link, old_source))
     if blockers:
         raise ValueError("Conflicting skills; no files changed:\n" + "\n".join(blockers))
 
     report = [f"{action}: {destination}" for action, _, destination in actions]
+    report.extend(f"remove legacy: {link}" for link, _ in legacy_links)
     if dry_run:
         return report
     created = []
@@ -66,6 +77,13 @@ def install(bundle: Path, base: Path, *, dry_run: bool = False, remove: bool = F
             if destination.is_symlink() and destination.resolve() == source.resolve():
                 destination.unlink()
         raise
+    # Keep all legacy links until the new bundle is installed. Cleanup can be retried
+    # after an OS error; a concurrently replaced legacy entry belongs to its new owner.
+    for link, old_source in legacy_links:
+        if link.is_symlink() and link.resolve() == old_source.resolve():
+            link.unlink()
+        else:
+            report[report.index(f"remove legacy: {link}")] = f"preserve changed legacy: {link}"
     return report
 
 
@@ -76,13 +94,16 @@ def main() -> int:
     scope.add_argument("--repo", type=Path, help="Install in REPO/.agents/skills")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--remove", action="store_true", help="Remove only links to this checkout")
+    parser.add_argument("--migrate-from", type=Path, metavar="OLD_CHECKOUT",
+                        help="After installation, remove only Project Thread links to OLD_CHECKOUT")
     args = parser.parse_args()
     try:
         for line in install(BUNDLE, Path.home() if args.user else args.repo,
-                            dry_run=args.dry_run, remove=args.remove):
+                            dry_run=args.dry_run, remove=args.remove,
+                            legacy_bundle=args.migrate_from):
             print(line)
     except (ValueError, OSError) as error:
-        print(f"project-thread: {error}", file=sys.stderr)
+        print(f"make-codebase-agentic: {error}", file=sys.stderr)
         return 1
     return 0
 

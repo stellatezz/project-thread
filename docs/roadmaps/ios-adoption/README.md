@@ -1,6 +1,6 @@
 # iOS-adoption roadmap
 
-Scope: evaluating Project Thread in a real native iOS client and using observed needs to improve the suite. [Project index](../../roadmap.md).
+Scope: evaluating Make Codebase Agentic in a real native iOS client and using observed needs to improve the suite. [Project index](../../roadmap.md).
 
 | Outcome | Status | Dependencies | Requirement/plan owner |
 | --- | --- | --- | --- |

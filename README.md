@@ -1,6 +1,10 @@
-# Project Thread
+# Make Codebase Agentic
 
-Eleven connected skills for building software in verified phases, with native iOS client guidance for ambitious products. Keep product intent, current technical facts, decisions, procedures, and session handoffs connected.
+**Give coding agents the context, workflows, and checks to build reliably.**
+
+Make Codebase Agentic helps people and coding agents understand a repository, make maintainable changes, verify behavior, and continue work across sessions. Eleven connected skills cover repository setup, readable documentation, engineering, delivery planning, and native iOS development.
+
+The repository keeps instructions, current technical facts, decisions, procedures, and work status connected. Guidance is detailed where a reader needs it: short entry points lead to focused references, complete behavior descriptions, and worked examples. Installing the skills makes that workflow available; applying setup adapts it to an actual codebase.
 
 **Recover context → plan the outcome → apply engineering and iOS guidance → implement the phase → verify → update docs, notes, cookbooks, and checkpoints.**
 
@@ -8,19 +12,27 @@ Eleven connected skills for building software in verified phases, with native iO
 
 | Skill | Owns |
 | --- | --- |
-| [project-thread](skills/project-thread/SKILL.md) | Daily context recovery and routing |
-| [project-thread-setup](skills/project-thread-setup/SKILL.md) | Adoption and mapping existing records |
-| [project-thread-roadmap](skills/project-thread-roadmap/SKILL.md) | Area/initiative roadmaps, shared priorities, and dependencies |
-| [project-thread-plan](skills/project-thread-plan/SKILL.md) | Feature requirements, decisions, and acceptance criteria |
-| [project-thread-phase](skills/project-thread-phase/SKILL.md) | Implementation and evidence for an agreed phase |
-| [project-thread-documentation](skills/project-thread-documentation/SKILL.md) | Current facts and learned cookbooks |
-| [project-thread-agent-notes](skills/project-thread-agent-notes/SKILL.md) | Rationale, alternatives, and decision lifecycle |
-| [project-thread-review](skills/project-thread-review/SKILL.md) | Assessment of behavior and evidence |
-| [project-thread-simplify](skills/project-thread-simplify/SKILL.md) | Evidence-backed simplification proposals |
-| [project-thread-engineering](skills/project-thread-engineering/SKILL.md) | Maintainable design, implementation, and verification |
-| [project-thread-ios](skills/project-thread-ios/SKILL.md) | iOS architecture, interaction, reliability, and device evidence |
+| [make-codebase-agentic](skills/make-codebase-agentic/SKILL.md) | Daily context recovery and routing |
+| [make-codebase-agentic-setup](skills/make-codebase-agentic-setup/SKILL.md) | Adoption and mapping existing records |
+| [make-codebase-agentic-roadmap](skills/make-codebase-agentic-roadmap/SKILL.md) | Area/initiative roadmaps, shared priorities, and dependencies |
+| [make-codebase-agentic-plan](skills/make-codebase-agentic-plan/SKILL.md) | Feature requirements, decisions, and acceptance criteria |
+| [make-codebase-agentic-phase](skills/make-codebase-agentic-phase/SKILL.md) | Implementation and evidence for an agreed phase |
+| [make-codebase-agentic-documentation](skills/make-codebase-agentic-documentation/SKILL.md) | Documentation structure, precise prose, code explanations, instructions, and cookbooks |
+| [make-codebase-agentic-agent-notes](skills/make-codebase-agentic-agent-notes/SKILL.md) | Rationale, alternatives, and decision lifecycle |
+| [make-codebase-agentic-review](skills/make-codebase-agentic-review/SKILL.md) | Assessment of behavior and evidence |
+| [make-codebase-agentic-simplify](skills/make-codebase-agentic-simplify/SKILL.md) | Evidence-backed simplification proposals |
+| [make-codebase-agentic-engineering](skills/make-codebase-agentic-engineering/SKILL.md) | Maintainable design, implementation, and verification |
+| [make-codebase-agentic-ios](skills/make-codebase-agentic-ios/SKILL.md) | iOS architecture, interaction, reliability, and device evidence |
 
 The iOS skill includes conditional guidance for location/live experiences, feeds/uploads, and media creation/editing. New apps default to Swift and SwiftUI with UIKit where justified; existing apps retain established architecture. Each project selects its actual state management, persistence, budgets, and supported environments.
+
+## Readable knowledge for people and agents
+
+The [documentation skill](skills/make-codebase-agentic-documentation/SKILL.md) teaches document placement, technical writing, codebase documentation, instruction hierarchy, and editorial judgment through worked examples. The [engineering skill](skills/make-codebase-agentic-engineering/SKILL.md) connects that knowledge to code organization, state ownership, interfaces, failure behavior, and verification.
+
+A repository's root instructions orient the reader and point to relevant local rules. Architecture explains how components fit together; component references describe detailed behavior; cookbooks explain proven procedures; Agent Notes preserve consequential decisions. Local API documentation retains the conditions and guarantees a caller needs, with links to extended explanations. Detail has an owner and a reading path.
+
+The suite adapts existing `AGENTS.md`, `CLAUDE.md`, and equivalent entry files through [instruction-hierarchy guidance](skills/make-codebase-agentic-documentation/references/instruction-hierarchy.md). It preserves unique rules and separates valid file links from verified host discovery. The Codex installation below is tested; an adopting repository must verify other tools' loading behavior in its own environment.
 
 ## Organize a substantial project
 
@@ -47,13 +59,16 @@ docs/roadmaps/media-editor/
 .agents/notes/implemented/architecture/export-ownership.md
 ```
 
-Each plan and issue has one primary roadmap owner. Phases group work into verifiable delivery steps, and issues track concrete problems or work items. Agent Notes preserve decisions and link to the affected records from one canonical lifecycle tree. Other areas reference shared capabilities as dependencies. Detailed requirements and acceptance criteria have one owner in the plan or an existing requirements document; shared business rules stay in product documentation. Roadmap progress follows verified plan/phase evidence. See [delivery-record guidance](skills/project-thread/references/delivery-records.md) for links and completion rules.
+Each plan and issue has one primary roadmap owner. Phases group work into verifiable delivery steps, and issues track concrete problems or work items. Agent Notes preserve decisions and link to the affected records from one canonical lifecycle tree. Other areas reference shared capabilities as dependencies. Detailed requirements and acceptance criteria have one owner in the plan or an existing requirements document; shared business rules stay in product documentation. Roadmap progress follows verified plan/phase evidence. See [delivery-record guidance](skills/make-codebase-agentic/references/delivery-records.md) for links and completion rules.
 
 ## Install in Codex
 
 Requires Python 3.9+ and a filesystem with symlink support. Keep this checkout at a stable path. Install the complete bundle so companion references resolve.
 
 ```sh
+git clone https://github.com/stellatezz/make-codebase-agentic.git
+cd make-codebase-agentic
+
 # Preview, then install for your user.
 python3 scripts/install.py --user --dry-run
 python3 scripts/install.py --user
@@ -68,12 +83,14 @@ The installer links all eleven skills into `~/.agents/skills` or the target repo
 Start a new Codex thread in the app repository, then invoke:
 
 ```text
-Use $project-thread-setup to adopt this framework using our existing documentation.
-Use $project-thread to resume the next agreed feature phase.
-Use $project-thread-ios to implement and verify this iOS journey.
+Use $make-codebase-agentic-setup to adopt this framework using our existing documentation.
+Use $make-codebase-agentic to resume the next agreed feature phase.
+Use $make-codebase-agentic-ios to implement and verify this iOS journey.
 ```
 
 Skills support automatic discovery as well as explicit invocation. Updating this checkout updates linked skill content; use a new thread to pick it up. Remove only links owned by this checkout with `python3 scripts/install.py --user --remove` or the corresponding `--repo` command. Remove links before moving/deleting the checkout, then reinstall from its new location; conflicting old links are preserved for inspection.
+
+Upgrading from Project Thread: follow [the migration guide](docs/migration.md) to replace the old skill links after moving or updating the checkout. The eleven invocation names now use `make-codebase-agentic` in place of `project-thread`.
 
 ## Plugin and distribution
 
@@ -89,8 +106,8 @@ Packaging writes a complete, reproducible ZIP under `dist/` containing the plugi
 
 ## Operating boundaries
 
-Current facts belong in authoritative docs, repeatable project procedures in cookbooks, and every non-trivial change adds or updates an Agent Note. Notes retain proposed, implemented, rejected, and archived lifecycles. Plans and phases track intended work and verified progress; checkpoints support continuation without the original conversation. [Record ownership](skills/project-thread/references/records.md) defines the shared rules.
+Current facts belong in authoritative docs, repeatable project procedures in cookbooks, and every non-trivial change adds or updates an Agent Note. Notes retain proposed, implemented, rejected, and archived lifecycles. Plans and phases track intended work and verified progress; checkpoints support continuation without the original conversation. [Record ownership](skills/make-codebase-agentic/references/records.md) defines the shared rules.
 
-Uber, Instagram, and CapCut illustrate demanding client journeys, not prescribed architectures. V1 focuses on native iOS clients, excellent launch quality, and growth in phases. Android, backend implementation, automatic publishing, and production-scale claims without measurements are outside this version's scope. Simplification remains an investigation/proposal workflow, not an audit after every edit.
+Uber, Instagram, and CapCut illustrate demanding client journeys, not prescribed architectures. Common repository and engineering guidance applies across software projects; the specialist platform guidance focuses on native iOS clients, excellent launch quality, and growth in phases. Android-specific guidance, backend implementation, automatic publishing, and production-scale claims without measurements are outside this version's scope. Simplification remains an investigation/proposal workflow, not an audit after every edit.
 
-See the [architecture](docs/architecture.md), [context map](docs/project-thread.md), [evaluation fixtures](evals/README.md), and [source acknowledgments](THIRD_PARTY_NOTICES.md).
+See the [architecture](docs/architecture.md), [context map](docs/codebase.md), [evaluation fixtures](evals/README.md), and [source acknowledgments](THIRD_PARTY_NOTICES.md).

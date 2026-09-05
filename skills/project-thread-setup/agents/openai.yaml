@@ -1,4 +1,0 @@
-interface:
-  display_name: "Project Thread Setup"
-  short_description: "Map project records without replacing existing docs"
-  default_prompt: "Use $project-thread-setup to adopt the framework in this repository."

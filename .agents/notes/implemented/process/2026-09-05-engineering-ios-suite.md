@@ -8,7 +8,7 @@ Substantial iOS client work needs maintainable implementation discipline, comple
 
 ## Decision
 
-Project Thread contains eleven sibling skills. The foundation handles context, adoption, roadmap, planning, phases, documentation, notes, review, and simplification. Engineering owns design/implementation judgment; iOS applies it to platform-specific work using conditional references. Shared record ownership, lifecycle, and checkpoints retain a single authority. The [architecture](../../../../docs/architecture.md) describes the implemented boundaries.
+Make Codebase Agentic contains eleven sibling skills. The foundation handles context, adoption, roadmap, planning, phases, documentation, notes, review, and simplification. Engineering owns design/implementation judgment; iOS applies it to platform-specific work using conditional references. Shared record ownership, lifecycle, and checkpoints retain a single authority. The [architecture](../../../../docs/architecture.md) describes the implemented boundaries.
 
 The complete bundle installs as sibling symlinks at user or repository scope and also includes Codex plugin metadata. Small standard-library helpers check structure, preserve existing installations, and package an inspectable archive. iOS build/test commands come from the adopting project, not a framework-owned wrapper.
 
@@ -22,7 +22,7 @@ A custom app generator or Xcode automation layer would add maintenance and imply
 
 The source checkout must stay at a stable location while linked installations are in use. All eleven skills travel together. Project authors still resolve their actual business contracts, architecture, data guarantees, budgets, and device matrix. Structural validation cannot prove good engineering judgment, and fixture logic checks cannot prove app/device or release readiness.
 
-The note is the initial decision owner; no earlier active Project Thread note existed to supersede. DeepSeek-derived principles are adapted without copying its project-specific tools or bilingual artifacts. See [source acknowledgments](../../../../THIRD_PARTY_NOTICES.md).
+The note is the initial decision owner; no earlier active Make Codebase Agentic note existed to supersede. DeepSeek-derived principles are adapted without copying its project-specific tools or bilingual artifacts. See [source acknowledgments](../../../../THIRD_PARTY_NOTICES.md).
 
 The subsequent [area-roadmap decision](2026-09-05-area-roadmaps.md) refines requirement and planning ownership while retaining this foundation.
 

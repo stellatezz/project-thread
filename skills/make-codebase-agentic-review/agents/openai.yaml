@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Codebase Agentic Review"
+  short_description: "Assess behavior, contracts, and verification evidence"
+  default_prompt: "Use $make-codebase-agentic-review to review this change against its acceptance criteria."

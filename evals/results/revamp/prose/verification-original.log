@@ -1,0 +1,24 @@
+Original inline verification run, retained from the tool result.
+Working directory: /var/folders/sl/z1pskn011ys5lz61c0yf17t40000gn/T/mca-prose-z1u2etyg
+Command form: PYTHONDONTWRITEBYTECODE=1 python3 - <<'PY'
+The exact Python body between that opening command and the closing PY marker
+is retained in verification.py. The command body is not duplicated in this log.
+Exit code: 0
+No verification rerun was performed when retaining these artifacts.
+
+Original output:
+PASS: README command, copied verbatim from its Python body
+PASS: save creates destination, round-trip matches, input unchanged, no temp left
+PASS: overwrite syncs first, uses same parent, preserves old bytes until replacement
+PASS: set serialization fails before filesystem changes
+PASS: circular input raises ValueError and preserves old file
+PASS: missing parent raises and is not created
+PASS: fsync OSError reaches caller, old file survives, temporary file removed
+PASS: replace OSError reaches caller, old file survives, temporary file removed
+PASS: cleanup failure replaces surfaced error and leaves temporary file
+PASS: JSON key and tuple conversion plus default NaN acceptance
+PASS: annotations do not enforce a dictionary on save or load
+PASS: malformed JSON raises without repair
+PASS: invalid UTF-8 raises without mutation
+PASS: missing file load raises FileNotFoundError
+PASS: 13 storage checks, README example, and source SHA256 unchanged

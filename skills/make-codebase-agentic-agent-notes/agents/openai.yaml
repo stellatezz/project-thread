@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Codebase Agentic Agent Notes"
+  short_description: "Preserve decisions, alternatives, and verification"
+  default_prompt: "Use $make-codebase-agentic-agent-notes to record this decision and its lifecycle accurately."

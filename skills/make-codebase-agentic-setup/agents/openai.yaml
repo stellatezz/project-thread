@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Codebase Agentic Setup"
+  short_description: "Map project records without replacing existing docs"
+  default_prompt: "Use $make-codebase-agentic-setup to adopt the framework in this repository."

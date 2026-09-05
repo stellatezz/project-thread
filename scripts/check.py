@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Dependency-free structural checks for the Project Thread bundle, not an app audit."""
+"""Dependency-free structural checks for the Make Codebase Agentic bundle, not an app audit."""
 
 from __future__ import annotations
 
@@ -11,10 +11,10 @@ from urllib.parse import unquote, urlsplit
 
 
 SKILLS = {
-    "project-thread", "project-thread-setup", "project-thread-roadmap",
-    "project-thread-plan", "project-thread-phase", "project-thread-documentation",
-    "project-thread-agent-notes", "project-thread-review", "project-thread-simplify",
-    "project-thread-engineering", "project-thread-ios",
+    "make-codebase-agentic", "make-codebase-agentic-setup", "make-codebase-agentic-roadmap",
+    "make-codebase-agentic-plan", "make-codebase-agentic-phase", "make-codebase-agentic-documentation",
+    "make-codebase-agentic-agent-notes", "make-codebase-agentic-review", "make-codebase-agentic-simplify",
+    "make-codebase-agentic-engineering", "make-codebase-agentic-ios",
 }
 
 
@@ -54,7 +54,7 @@ def validate_bundle(root: Path) -> list[str]:
 
     try:
         manifest = json.loads((root / ".codex-plugin" / "plugin.json").read_text())
-        if manifest.get("name") != "project-thread" or manifest.get("skills") != "./skills/":
+        if manifest.get("name") != "make-codebase-agentic" or manifest.get("skills") != "./skills/":
             errors.append("Plugin name/skills path does not match bundle")
         if not re.fullmatch(r"\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.+-]+)?", manifest.get("version", "")):
             errors.append("Plugin version is missing or invalid")
@@ -91,7 +91,7 @@ def main() -> int:
     for error in errors:
         print(error)
     if not errors:
-        print("project-thread: 11 skills, metadata, file links, and note statuses passed")
+        print("make-codebase-agentic: 11 skills, metadata, file links, and note statuses passed")
     return bool(errors)
 
 

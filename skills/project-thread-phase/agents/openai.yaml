@@ -1,4 +1,0 @@
-interface:
-  display_name: "Project Thread Phase"
-  short_description: "Implement and verify the next agreed feature phase"
-  default_prompt: "Use $project-thread-phase to resume and complete the next agreed phase."

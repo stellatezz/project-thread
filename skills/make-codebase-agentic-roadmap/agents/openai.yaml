@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Codebase Agentic Roadmap"
+  short_description: "Sequence area roadmaps, requirements, and dependencies"
+  default_prompt: "Use $make-codebase-agentic-roadmap to update this area roadmap and its cross-area dependencies."

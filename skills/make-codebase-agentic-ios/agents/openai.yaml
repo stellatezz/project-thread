@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Codebase Agentic iOS"
+  short_description: "Build polished iOS journeys with reliable client state"
+  default_prompt: "Use $make-codebase-agentic-ios to implement the next iOS slice and record simulator and device evidence."

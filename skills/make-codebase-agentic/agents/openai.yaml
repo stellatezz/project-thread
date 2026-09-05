@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Codebase Agentic"
+  short_description: "Keep plans, decisions, and sessions connected"
+  default_prompt: "Use $make-codebase-agentic to resume this project from its recorded state and continue the next agreed feature phase."

@@ -1,8 +1,10 @@
 # Source acknowledgments
 
-Project Thread adapts repository-knowledge, Agent Note, testing, review, and simplification principles from [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), inspected at commit `141eb6fef83422698aef7a981029e843e8161534`. In particular, its `dsh-find-simplifications` skill informs the investigation-and-proposal workflow. Project-specific backends, package rules, commands, and bilingual artifacts are not carried over.
+Make Codebase Agentic adapts repository-knowledge, Agent Note, testing, review, and simplification principles from [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), inspected at commit `141eb6fef83422698aef7a981029e843e8161534`. In particular, its `dsh-find-simplifications` skill informs the investigation-and-proposal workflow. Project-specific backends, package rules, commands, and bilingual artifacts are not carried over.
 
-The local document-it toolkit supplied prior art for authoritative documentation, note lifecycle, and create/preserve/block adoption behavior. Its source checkout has no committed revision; it was inspected on 2026-09-05. Project Thread is a separate implementation and repository.
+The documentation revamp also draws on `docs/AGENTS.md`, `dsh-doc-standards`, `dsh-prose-standard`, and its distilled examples at that revision: clear document scope, complete behavioral meaning, local explanations, and maintained instruction ownership. The new worked examples use fictional application behaviors. The suite was previously named Project Thread; retained historical artifacts and the license keep their original attribution.
+
+The local document-it toolkit supplied prior art for authoritative documentation, note lifecycle, and create/preserve/block adoption behavior. Its source checkout has no committed revision; it was inspected on 2026-09-05. Make Codebase Agentic is a separate implementation and repository.
 
 Apple and Swift documentation is linked at the relevant points in the iOS references. These links guide platform verification; this bundle does not redistribute their documentation or imply endorsement.
 
