@@ -1,6 +1,6 @@
 # Readable repository knowledge and rename
 
-Status: in-progress
+Status: complete
 
 Owner: [skill-suite roadmap](../README.md). Issue: [readable repository guidance](../issues/readable-repository-guidance.md). Phase: [revamp and migrate](../phases/readable-agentic-codebase/01-revamp-and-migrate.md).
 
@@ -20,4 +20,6 @@ Rename Project Thread to Make Codebase Agentic and make its documentation and co
 
 ## Decisions and boundaries
 
-The [decision note](../../../../.agents/notes/proposed/process/2026-09-05-readable-agentic-codebase.md) owns the naming and guidance choices. Short skill entry points route to substantial references. No additional public skill, mandatory word limit, repository-wide style audit, automatic deployment, or universal app architecture is introduced. Historical v1 result files remain unchanged.
+The [decision note](../../../../.agents/notes/implemented/process/2026-09-05-readable-agentic-codebase.md) owns the naming and guidance choices. Short skill entry points route to substantial references. No additional public skill, mandatory word limit, repository-wide style audit, automatic deployment, or universal app architecture is introduced. Historical v1 result files remain unchanged.
+
+The [completed phase](../phases/readable-agentic-codebase/01-revamp-and-migrate.md) records acceptance evidence and the public source push. Remaining host/device limits are explicitly outside this phase's criteria.

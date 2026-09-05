@@ -2,6 +2,8 @@
 
 Status: implemented
 
+The [readable repository guidance decision](2026-09-05-readable-agentic-codebase.md) refines the bundle identity and documentation standards. This foundation remains active for engineering, iOS, lifecycle, and evidence boundaries.
+
 ## Problem
 
 Substantial iOS client work needs maintainable implementation discipline, complete interaction journeys, reliable data/lifetimes, and credible evidence across sessions. The implementation target initially contained only an unfinished daily-skill scaffold, although the supplied plan assumed a nine-skill foundation.

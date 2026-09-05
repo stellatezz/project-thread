@@ -2,6 +2,8 @@
 
 Status: implemented
 
+The [readable repository guidance decision](2026-09-05-readable-agentic-codebase.md) refines the bundle's identity and writing guidance while retaining this roadmap and delivery ownership model.
+
 ## Problem
 
 The initial record map defaulted to one `docs/roadmap.md`, leaving large projects' area boundaries and requirement ownership implicit. A detailed project-wide roadmap becomes difficult to maintain when several product areas have separate plans and shared dependencies. The user approved scoped roadmaps with a lightweight project index and asked to connect issues, separate phases, and Agent Notes.
