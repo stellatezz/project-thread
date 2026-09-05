@@ -23,6 +23,7 @@ Use the repository's established paths. For a new adoption, use [setup](../make-
 | Execute or resume an agreed phase | [make-codebase-agentic-phase](../make-codebase-agentic-phase/SKILL.md) |
 | Design and implement substantial software changes | [make-codebase-agentic-engineering](../make-codebase-agentic-engineering/SKILL.md) |
 | Develop a native iOS client | [make-codebase-agentic-ios](../make-codebase-agentic-ios/SKILL.md) |
+| Develop a web client | [make-codebase-agentic-web](../make-codebase-agentic-web/SKILL.md) |
 | Maintain current facts or cookbooks | [make-codebase-agentic-documentation](../make-codebase-agentic-documentation/SKILL.md) |
 | Preserve rationale or transition a note | [make-codebase-agentic-agent-notes](../make-codebase-agentic-agent-notes/SKILL.md) |
 | Assess a change and its evidence | [make-codebase-agentic-review](../make-codebase-agentic-review/SKILL.md) |

@@ -1,0 +1,7 @@
+# Web fixture task
+
+Use make-codebase-agentic-web to produce an implementable feature plan and verification handoff from this repository brief. Write RESPONSE.md in the isolated output directory. This is a planning exercise; no application source, browser session, or live backend is available.
+
+The app is an existing Vue 3 application with server rendering, a shared component library, a query client, and URL-based catalog filters. The package lock and installed version details have not been supplied. Users need saved catalog searches. They edit search text, commit a filter, navigate to a result, then use Back. Results are paginated. Requests can finish in any order. The session can expire or switch accounts while a query is pending. The current mock save endpoint returns success after a delay; the real backend contract has not been agreed. Saving can time out. Product wants entered names preserved on failure and a keyboard-accessible save dialog. The supported browsers include desktop Chrome and mobile Safari, but no performance baseline exists. Public catalog pages must remain indexable. A proposed shortcut is to initialize all state from localStorage during rendering and add a global store for the feature.
+
+Explain your implementation decisions, consequential unresolved questions, acceptance criteria, and executable verification approach. Keep scope proportionate and accurately state available evidence.

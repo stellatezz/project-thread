@@ -2,11 +2,11 @@
 
 **Give coding agents the context, workflows, and checks to build reliably.**
 
-Make Codebase Agentic helps people and coding agents understand a repository, make maintainable changes, verify behavior, and continue work across sessions. Eleven connected skills cover repository setup, readable documentation, engineering, delivery planning, and native iOS development.
+Make Codebase Agentic helps people and coding agents understand a repository, make maintainable changes, verify behavior, and continue work across sessions. Twelve connected skills cover repository setup, readable documentation, engineering, delivery planning, and native iOS and web development.
 
 The repository keeps instructions, current technical facts, decisions, procedures, and work status connected. Guidance is detailed where a reader needs it: short entry points lead to focused references, complete behavior descriptions, and worked examples. Installing the skills makes that workflow available; applying setup adapts it to an actual codebase.
 
-**Recover context → plan the outcome → apply engineering and iOS guidance → implement the phase → verify → update docs, notes, cookbooks, and checkpoints.**
+**Recover context → plan the outcome → apply engineering and platform guidance → implement the phase → verify → update docs, notes, cookbooks, and checkpoints.**
 
 ## The bundle
 
@@ -23,6 +23,9 @@ The repository keeps instructions, current technical facts, decisions, procedure
 | [make-codebase-agentic-simplify](skills/make-codebase-agentic-simplify/SKILL.md) | Evidence-backed simplification proposals |
 | [make-codebase-agentic-engineering](skills/make-codebase-agentic-engineering/SKILL.md) | Maintainable design, implementation, and verification |
 | [make-codebase-agentic-ios](skills/make-codebase-agentic-ios/SKILL.md) | iOS architecture, interaction, reliability, and device evidence |
+| [make-codebase-agentic-web](skills/make-codebase-agentic-web/SKILL.md) | Web architecture, responsive interaction, accessibility, browser reliability, and evidence |
+
+The web skill adapts to the existing framework and covers routing/rendering, responsive design, accessible forms, async state, browser lifecycle, and measured performance. It does not prescribe one frontend stack.
 
 The iOS skill includes conditional guidance for location/live experiences, feeds/uploads, and media creation/editing. New apps default to Swift and SwiftUI with UIKit where justified; existing apps retain established architecture. Each project selects its actual state management, persistence, budgets, and supported environments.
 
@@ -82,7 +85,7 @@ python3 scripts/install.py --repo /path/to/app --dry-run
 python3 scripts/install.py --repo /path/to/app
 ```
 
-The installer links all eleven skills into `~/.agents/skills` or the target repository's `.agents/skills`, following Codex's [skill discovery locations](https://learn.chatgpt.com/docs/build-skills). Repeating installation preserves the same links. Conflicting files/directories/links and blocked parent paths stop installation before any skill is added. Existing unrelated skills remain untouched. It does not modify app code, project documentation, or plugin marketplace settings.
+The installer links all twelve skills into `~/.agents/skills` or the target repository's `.agents/skills`, following Codex's [skill discovery locations](https://learn.chatgpt.com/docs/build-skills). Repeating installation preserves the same links. Conflicting files/directories/links and blocked parent paths stop installation before any skill is added. Existing unrelated skills remain untouched. It does not modify app code, project documentation, or plugin marketplace settings.
 
 Start a new Codex thread in the app repository, then invoke:
 
@@ -90,6 +93,7 @@ Start a new Codex thread in the app repository, then invoke:
 Use $make-codebase-agentic-setup to adopt this framework using our existing documentation.
 Use $make-codebase-agentic to resume the next agreed feature phase.
 Use $make-codebase-agentic-ios to implement and verify this iOS journey.
+Use $make-codebase-agentic-web to implement and verify this web journey.
 ```
 
 Skills support automatic discovery as well as explicit invocation. Updating this checkout updates linked skill content; use a new thread to pick it up. Remove only links owned by this checkout with `python3 scripts/install.py --user --remove` or the corresponding `--repo` command. Remove links before moving/deleting the checkout, then reinstall from its new location; conflicting old links are preserved for inspection.
@@ -112,6 +116,6 @@ Packaging writes a complete, reproducible ZIP under `dist/` containing the plugi
 
 Current facts belong in authoritative docs, repeatable project procedures in cookbooks, and every non-trivial change adds or updates an Agent Note. Notes retain proposed, implemented, rejected, and archived lifecycles. Plans and phases track intended work and verified progress; checkpoints support continuation without the original conversation. [Record ownership](skills/make-codebase-agentic/references/records.md) defines the shared rules.
 
-Uber, Instagram, and CapCut illustrate demanding client journeys, not prescribed architectures. Common repository and engineering guidance applies across software projects; the specialist platform guidance focuses on native iOS clients, excellent launch quality, and growth in phases. Android-specific guidance, backend implementation, automatic publishing, and production-scale claims without measurements are outside this version's scope. Simplification remains an investigation/proposal workflow, not an audit after every edit.
+Uber, Instagram, and CapCut illustrate demanding client journeys, not prescribed architectures. Common repository and engineering guidance applies across software projects; the specialist platform guidance covers native iOS and web clients, excellent launch quality, and growth in phases. Android-specific guidance, backend implementation, automatic publishing, and production-scale claims without measurements are outside this version's scope. Simplification remains an investigation/proposal workflow, not an audit after every edit.
 
 See the [architecture](docs/architecture.md), [context map](docs/codebase.md), [evaluation fixtures](evals/README.md), and [source acknowledgments](THIRD_PARTY_NOTICES.md).

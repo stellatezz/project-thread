@@ -1,0 +1,13 @@
+# Data and browser reliability
+
+Use the established request/query layer and API contracts. Specify success, HTTP failure, malformed responses, timeout, cancellation, and retry behavior. Fetch can resolve on an HTTP error; inspect response status before accepting its body. Use cancellation for obsolete work where supported, and check request identity before committing results. See [MDN's Fetch guide](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for status handling and abort behavior.
+
+Cancellation alone does not establish that a result still belongs to the current user, route, or query. A late response for query A must not replace query B, append A's page to B's results, or clear B's loading indicator. Scope data and cursors by query and identity; invalidate obsolete generations, and guard success, failure, and cleanup paths. Reconcile optimistic writes with authoritative responses and roll back only the operation's own changes.
+
+For mutations, define duplicate submission and ambiguous outcomes. A client timeout does not prove a server write failed. Retry only when the contract makes repetition safe, using server-supported idempotency or reconciliation where needed. Preserve useful draft or recovery information for uploads and editing without claiming resumability absent a backend contract.
+
+Treat browser input, URLs, remote content, and stored data as untrusted. Validate at the real trust boundary; client checks improve feedback but do not enforce authorization. Avoid unsafe HTML insertion; use reviewed sanitization where rich content requires it. Keep secrets out of client bundles, URLs, and logs. Follow the application's session mechanism and documented CSRF/CORS protections; browser-readable storage is not a secure secret vault. Session changes must invalidate user-scoped caches and pending results. Do not silently redesign authentication.
+
+Define storage ownership, schema changes, retention, and recovery from unavailable storage or quota limits. Avoid depending on a final unload handler to save important edits. Inspect refresh, tab suspension, restoration, reconnect, and multi-tab changes when relevant. Service workers and offline queues add cache/version/conflict responsibilities; add them only for demonstrated requirements. Logout cleanup must respect the product's policy for unsynced work rather than silently losing it.
+
+A project cookbook might explain adding a paginated query with URL filters, reconciling an upload after reconnect, or invalidating account data at logout. Write it after verifying the actual implementation and commands.

@@ -48,7 +48,8 @@ def install(bundle: Path, base: Path, *, dry_run: bool = False, remove: bool = F
         else:
             action = "create"
         actions.append((action, source, destination))
-        if legacy_bundle is not None:
+        # Web was added after the rename; its old-name lookalike is not ours.
+        if legacy_bundle is not None and source.name != "make-codebase-agentic-web":
             old_name = source.name.replace("make-codebase-agentic", "project-thread", 1)
             old_link = target / old_name
             old_source = legacy_bundle.expanduser().resolve() / "skills" / old_name

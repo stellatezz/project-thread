@@ -15,7 +15,7 @@ SKILLS = {
     "make-codebase-agentic", "make-codebase-agentic-setup", "make-codebase-agentic-roadmap",
     "make-codebase-agentic-plan", "make-codebase-agentic-phase", "make-codebase-agentic-documentation",
     "make-codebase-agentic-agent-notes", "make-codebase-agentic-review", "make-codebase-agentic-simplify",
-    "make-codebase-agentic-engineering", "make-codebase-agentic-ios",
+    "make-codebase-agentic-engineering", "make-codebase-agentic-ios", "make-codebase-agentic-web",
 }
 
 
@@ -183,7 +183,7 @@ def main() -> int:
     for error in errors:
         print(error)
     if not errors:
-        print("make-codebase-agentic: 11 skills, metadata, file links, record dates, and lifecycle fields passed")
+        print(f"make-codebase-agentic: {len(SKILLS)} skills, metadata, file links, record dates, and lifecycle fields passed")
     return bool(errors)
 
 

@@ -10,7 +10,7 @@ Recover relevant business rules, the owning area or initiative roadmap, related 
 ## Make the work implementable
 
 - Own the feature's requirements here, or link the existing requirements authority. State the user journey, success and recovery behavior, scope, and non-goals. Link shared business rules; include important failure consequences and compatibility obligations.
-- Apply [engineering](../make-codebase-agentic-engineering/SKILL.md) to responsibilities, interfaces, state ownership, persistence, migrations, dependencies, and verification. For an iOS client, also apply [iOS](../make-codebase-agentic-ios/SKILL.md).
+- Apply [engineering](../make-codebase-agentic-engineering/SKILL.md) to responsibilities, interfaces, state ownership, persistence, migrations, dependencies, and verification. For an iOS client, also apply [iOS](../make-codebase-agentic-ios/SKILL.md); for a web client, apply [web](../make-codebase-agentic-web/SKILL.md).
 - Define acceptance criteria that can be observed through the real entry path. For interaction work, include loading, errors, permissions, accessibility, and supported layouts as relevant.
 - Divide the outcome into phases that produce testable behavior. Name dependencies, their owning plans/roadmaps, affected areas, checks, and evidence required for each phase. Keep uncertain later work coarse. A completed shared dependency does not by itself verify a consuming feature's journey.
 - Distinguish routine implementation latitude from unresolved business behavior or public contracts. Record alternatives and the decision in the owning Agent Note. Use existing authorization; ask only for decisions that remain consequential and unresolved.

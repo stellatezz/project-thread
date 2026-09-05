@@ -1,0 +1,45 @@
+Independent evaluator web_skill_eval returned this response in its final message after its temporary output write was rejected. The source maintainer retained the returned content here as authorized evaluation evidence.
+
+Draft planning conclusions:
+
+- Preserve Vue 3 SSR, existing components/router/query client/authentication. No demonstrated need for a global store.
+- URL owns committed search/filter/pagination state; form owns uncommitted text; query client owns results; feature-local dialog owns save name, immutable snapshot and operation state.
+- Proposed explicit filter commit pushes one history entry and resets pagination atomically. Back/Forward restores URL-derived controls/results. Typing creates no history entries.
+- Proposed save snapshots committed search, excluding pagination; confirm typed-versus-committed semantics and how users retrieve saved searches.
+- Reject rendering-time localStorage initialization because of server availability and hydration consistency. Current requirements need in-session name preservation, not assumed durable storage.
+- Preserve public server-rendered catalog content, metadata and established canonical/indexing rules. Keep private data out of shared SSR caches.
+- Scope async state by normalized query, page/cursor, identity and session/request generation. Guard success, failure and cleanup; cancellation alone is insufficient.
+- Old responses must never replace new results, append old pages, clear newer loading, or publish prior-account data/toasts.
+- Expiry/account switching invalidates pending work and private caches using existing auth policy. Preserve recoverable same-account drafts without exposing/resubmitting them under a different identity.
+- Model save as editing/submitting/confirmed/recoverable-error/outcome-unknown/auth-required. Preserve name and payload on recoverable failures. Block duplicate submission.
+- Timeout does not establish failure. No automatic mutation retry or unrestricted resend until backend idempotency or authoritative reconciliation is contracted. A delayed-success mock proves neither persistence nor duplicate prevention.
+- Reuse an accessible shared dialog: labels, connected errors, announcement, visible/contained keyboard focus, Escape policy and focus return. Closing a pending dialog cannot claim server cancellation. Check mobile software keyboard and long-content layouts.
+
+Consequential dependencies: backend schema, authoritative success, authorization/errors, timeout/idempotency/reconciliation; naming and duplicate rules; draft retention on navigation/close/logout/account switching; exact catalog URL and pagination/auth contracts; supported browser/device versions; measured performance baseline.
+
+Implementation sequence: inspect actual repository/runtime/scripts/contracts → resolve plan decisions → implement route/query ownership and dialog through existing seams with controlled mocks → integrate agreed test backend → run browser/device/SSR checks → update existing authoritative records and checkpoint. Backend and device gaps keep affected acceptance criteria open.
+
+Executable verification handoff:
+
+1. Discover actual commands from manifests/lockfiles; do not assume package manager or install tooling.
+2. Exercise real catalog URL: type, commit, paginate, native result link, Back/Forward, refresh/direct/invalid URLs. Assert URL, controls, payload and results agree.
+3. Hold request A, complete B, then complete/reject A. Also finish A while B is pending. Assert only B affects rows/errors/loading.
+4. Hold A page 2, change to B, release old page. Assert no cross-query rows/cursors; repeated pagination must not duplicate append.
+5. Expire/switch account during query and save; deliver late success/error. Assert no old-account results/toasts or unintended new-account save.
+6. Test save validation, HTTP errors, malformed success, offline/network failure, duplicate submit and server-commit/lost-response timeout. Assert intact name and correct recovery; verify duplicate prevention against real backend once contracted.
+7. Chrome keyboard/screen-reader journey plus available automated scan; supported mobile Safari/device with software keyboard, scrolling, long content and enlargement. Record browser/device versions and viewport screenshots. Emulation is separate evidence.
+8. Inspect raw public SSR HTML and hydrated page for content/metadata, mismatch warnings and console/network errors. Test denied storage and distinct sessions for cache leakage.
+9. Establish reproducible before/after performance runs with named workload, environment and revision; distinguish initial load/client navigation and lab/field evidence. No arbitrary score or production-performance claim.
+
+Actual verification: read task and references; drafted plan. No application checks, build, tests, browser, backend, accessibility, device or performance execution occurred.
+
+References loaded:
+
+- make-codebase-agentic-web/SKILL.md
+- Its four references: architecture-and-navigation.md, interaction-quality.md, data-and-browser-reliability.md, verification-and-performance.md
+- make-codebase-agentic-engineering/SKILL.md
+- Its references: code-structure.md, boundaries-and-failure.md, verification.md
+- make-codebase-agentic/references/records.md
+- evals/fixtures/web/TASK.md
+
+No source repository was modified, nothing installed, and no production access occurred by the evaluator.

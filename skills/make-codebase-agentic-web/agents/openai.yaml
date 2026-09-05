@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Codebase Agentic Web"
+  short_description: "Build accessible web journeys with reliable browser state"
+  default_prompt: "Use $make-codebase-agentic-web to implement the next web journey and record browser verification evidence."

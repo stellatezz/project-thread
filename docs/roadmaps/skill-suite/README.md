@@ -5,7 +5,7 @@ Status: active
 Created: 2026-09-05
 Updated: 2026-09-05
 
-Scope: the reusable Make Codebase Agentic workflow, shared engineering/iOS guidance, validation, and distribution. [Project index](../../roadmap.md).
+Scope: the reusable Make Codebase Agentic workflow, shared engineering/iOS/web guidance, validation, and distribution. [Project index](../../roadmap.md).
 
 | Outcome | Status | Priority or dependency | Requirement/plan and evidence owner |
 | --- | --- | --- | --- |
@@ -13,6 +13,7 @@ Scope: the reusable Make Codebase Agentic workflow, shared engineering/iOS guida
 | Connect area roadmaps, requirements, issues, phases, and decisions | Complete | Follow-up to the foundation | [Roadmap records plan](plans/area-roadmaps.md) |
 | Make repository knowledge readable and adopt the new identity | Complete | Builds on shared record ownership | [Revamp and rename plan](plans/readable-agentic-codebase.md) |
 | Define independent roadmap lifecycle and trustworthy record dates | Complete | Refines delivery record ownership | [Lifecycle and dates plan](plans/roadmap-lifecycle.md) |
+| Add web client engineering guidance | Complete | Requested platform extension | [Web client plan](plans/web-client.md) |
 
 ## Delivery records
 

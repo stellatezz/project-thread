@@ -103,7 +103,7 @@ class InstallationTests(unittest.TestCase):
     def legacy_links(self):
         old = self.base / "old-checkout"
         self.target.mkdir(parents=True)
-        for name in SKILLS:
+        for name in SKILLS - {"make-codebase-agentic-web"}:
             legacy = name.replace("make-codebase-agentic", "project-thread", 1)
             (self.target / legacy).symlink_to(old / "skills" / legacy)
         return old
@@ -119,6 +119,15 @@ class InstallationTests(unittest.TestCase):
         subprocess.run(command, check=True, capture_output=True)
         self.assertEqual({p.name for p in self.target.iterdir()}, SKILLS)
         self.assertTrue(all((self.target / name / "SKILL.md").is_file() for name in SKILLS))
+
+    def test_migration_preserves_name_that_was_not_in_legacy_bundle(self):
+        old = self.legacy_links()
+        unrelated = self.target / "project-thread-web"
+        original = old / "skills" / unrelated.name
+        unrelated.symlink_to(original)
+        install(ROOT, self.base, legacy_bundle=old)
+        self.assertEqual(unrelated.readlink(), original)
+        self.assertEqual({p.name for p in self.target.iterdir()}, SKILLS | {unrelated.name})
 
     def test_migration_preserves_other_sources_and_blocks_before_cleanup(self):
         old = self.legacy_links()
@@ -151,7 +160,7 @@ class InstallationTests(unittest.TestCase):
             with self.assertRaises(OSError):
                 install(ROOT, self.base, legacy_bundle=old)
         self.assertEqual({p.name for p in self.target.iterdir()},
-                         {n.replace("make-codebase-agentic", "project-thread", 1) for n in SKILLS})
+                         {n.replace("make-codebase-agentic", "project-thread", 1) for n in SKILLS - {"make-codebase-agentic-web"}})
 
     def test_migration_cleanup_can_be_retried_and_remove_cannot_migrate(self):
         old = self.legacy_links()

@@ -1,6 +1,6 @@
 {
   "name": "make-codebase-agentic",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Give coding agents the context, workflows, and checks to build maintainable software with readable repository knowledge.",
   "author": {
     "name": "Make Codebase Agentic contributors"
@@ -9,7 +9,7 @@
   "interface": {
     "displayName": "Make Codebase Agentic",
     "shortDescription": "Readable codebase knowledge and verified engineering.",
-    "longDescription": "Equip repositories for people and coding agents with scoped instructions, precise documentation, engineering guidance, delivery records, and native iOS references.",
+    "longDescription": "Equip repositories for people and coding agents with scoped instructions, precise documentation, engineering guidance, delivery records, and native iOS and web references.",
     "developerName": "Make Codebase Agentic contributors",
     "category": "Productivity",
     "capabilities": [
@@ -27,6 +27,7 @@
     "ios",
     "swift",
     "planning",
-    "documentation"
+    "documentation",
+    "web"
   ]
 }

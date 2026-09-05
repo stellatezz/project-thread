@@ -2,6 +2,8 @@
 
 Follow [the shared lifecycle](../../skills/make-codebase-agentic-agent-notes/references/lifecycle.md). Current facts belong in [architecture](../../docs/architecture.md), and work state belongs in the [checkpoint](../../docs/checkpoints/current.md).
 
+- [Web client guidance](implemented/process/2026-09-05-web-client-guidance.md): framework adaptation, browser reliability, accessibility, and evidence.
+
 - [Roadmap lifecycle and dates](implemented/process/2026-09-05-roadmap-lifecycle-and-dates.md): separate roadmap and decision states, stable dates, archival metadata, and validation limits.
 
 - [Readable repository guidance and rename](implemented/process/2026-09-05-readable-agentic-codebase.md): implemented standards, identity, and installation migration.

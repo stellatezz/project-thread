@@ -7,7 +7,7 @@ description: Execute or resume an agreed software feature phase, verify its acce
 
 Recover the active phase file or plan section, its parent plan and roadmap, linked issues/decisions, and [checkpoint](../make-codebase-agentic/references/checkpoints.md); inspect the actual working tree and relevant records. Preserve unrelated changes. Confirm the next phase's scope and unresolved dependencies without re-requesting settled authorization. Use [delivery-record guidance](../make-codebase-agentic/references/delivery-records.md) to keep phase evidence and issue state with their owners.
 
-Apply [engineering](../make-codebase-agentic-engineering/SKILL.md), plus [iOS](../make-codebase-agentic-ios/SKILL.md) for native iOS work. Use established repository patterns and cookbooks. Implement the phase through the real application entry path, including the accepted failure and recovery states.
+Apply [engineering](../make-codebase-agentic-engineering/SKILL.md), plus [iOS](../make-codebase-agentic-ios/SKILL.md) for native iOS work or [web](../make-codebase-agentic-web/SKILL.md) for web clients. Use established repository patterns and cookbooks. Implement the phase through the real application entry path, including the accepted failure and recovery states.
 
 When evidence invalidates the plan, update the owning plan and Agent Note. Resolve changed business behavior or public contracts before implementing that dependent change. Continue independent authorized work rather than inventing backend behavior or expanding scope to unblock yourself.
 

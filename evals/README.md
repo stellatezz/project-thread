@@ -1,6 +1,6 @@
 # Behavioral fixtures
 
-These fixtures evaluate skill behavior, not production iOS readiness. They complement metadata/link checks. Use an isolated workspace and supply the task plus raw artifacts to an evaluator without the rubric or previous results. Read only the skill entry points and the references the task calls for. Record outputs, actual actions, evidence, and gaps; do not score keyword matching as correctness.
+These fixtures evaluate skill behavior, not production application readiness. They complement metadata/link checks. Use an isolated workspace and supply the task plus raw artifacts to an evaluator without the rubric or previous results. Read only the skill entry points and the references the task calls for. Record outputs, actual actions, evidence, and gaps; do not score keyword matching as correctness.
 
 ## Executable feed exercise
 
@@ -27,3 +27,7 @@ Retain actual outputs, semantic findings, commands, and limitations under a date
 ## Roadmap maintenance exercise
 
 Give a fresh evaluator [the five-case lifecycle task](fixtures/roadmap-lifecycle/TASK.md) and the roadmap skill. Ask for concrete metadata and navigation proposals without supplying expected statuses. Review its treatment of ongoing area ownership, cancellation, resumption authorization, frozen archives, unknown creation dates, and independent Agent Notes. A scenario response provides decision evidence; metadata tests and application acceptance are separate checks. The [recorded run](results/2026-09-05-roadmap-lifecycle.md) retains actual inputs, output, and limits.
+
+## Web client planning exercise
+
+Give an independent evaluator [the web fixture](fixtures/web/TASK.md) and the web skill, with an isolated output directory. The fixture supplies a repository brief without application code or browser tooling. Review whether the response preserves established architecture, handles request and session ownership, resolves navigation and accessible recovery, exposes missing contracts, and distinguishes proposed checks from executed evidence. Retain the response and review under a dated result; this exercise cannot establish runtime or browser correctness.
